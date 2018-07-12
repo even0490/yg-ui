@@ -1,0 +1,5 @@
+{
+  "index": "./src/index.js",
+  "Button": "./src/components/Button",
+  "Input": "./src/components/Input"
+}
