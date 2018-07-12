@@ -1,7 +1,17 @@
-import Layout from "./layout/Layout.vue";
+import Button from "./components/Button";
+import Input from "./components/Input";
 
-Layout.install = function(Vue) {
-  Vue.component(Layout.name, Layout);
+const components = {
+  Button,
+  Input
 };
 
-export { Layout as default, Layout };
+const install = function(Vue) {
+  Object.keys(components).forEach(key => {
+    Vue.use(components[key]);
+  });
+};
+
+export default {
+  install
+};
