@@ -13,6 +13,23 @@ exports.assetsPath = function(_path) {
   return path.posix.join(assetsSubDirectory, _path);
 };
 
+exports.entryPath = function(entryJson) {
+  function flat(obj, prefix) {
+    const entries = {};
+    Object.entries(obj).forEach(([key, val]) => {
+      const compoundKey = prefix ? [prefix, key].join("/") : key;
+      if (typeof val === "object") {
+        Object.assign(entries, flat(val, compoundKey));
+      } else {
+        entries[compoundKey] = val;
+      }
+    });
+    return entries;
+  }
+
+  return flat(entryJson);
+};
+
 exports.cssLoaders = function(options) {
   options = options || {};
 

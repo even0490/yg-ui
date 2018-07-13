@@ -24,6 +24,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       usePostCSS: true
     })
   },
+  entry: {
+    app: "./docs/main.js"
+  },
   devtool: config.docs.productionSourceMap ? config.docs.devtool : false,
   output: {
     path: config.docs.assetsRoot,
