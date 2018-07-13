@@ -5,9 +5,14 @@
   "author": "licheng <even0490@163.com>",
   "main": "./dist/index.js",
   "private": false,
+  "license": "MIT",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:even0490/yg-ui.git"
+  },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
