@@ -15,7 +15,7 @@ const PORT = process.env.PORT && Number(process.env.PORT);
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   entry: {
-    app: "./docs/main.js"
+    app: "./examples/main.js"
   },
   module: {
     rules: utils.styleLoaders({

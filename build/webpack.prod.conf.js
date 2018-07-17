@@ -25,7 +25,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     })
   },
   entry: {
-    app: "./docs/main.js"
+    app: "./examples/main.js"
   },
   devtool: config.docs.productionSourceMap ? config.docs.devtool : false,
   output: {
