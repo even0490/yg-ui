@@ -6,7 +6,7 @@ Vue.use(Router);
 
 export default new Router({
   mode: "history",
-  base: "yg-ui",
+  base: "/yg-ui/",
   routes: [
     {
       path: "/",

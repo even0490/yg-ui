@@ -1,14 +1,24 @@
 {
   "name": "yg-ui",
   "version": "1.0.5",
-  "description": "A Vue.js UI component",
+  "description": "A UI components Library with Vue.js",
   "author": "licheng <even0490@163.com>",
   "main": "./dist/index.js",
   "private": false,
   "license": "MIT",
+  "keywords": [
+    "yg-ui",
+    "ygWeb",
+    "vue",
+    "vue.js",
+    "component",
+    "components",
+    "ui"
+  ],
   "files": [
     "dist"
   ],
+  "homepage": "https://even0490.github.io/yg-ui/",
   "repository": {
     "type": "git",
     "url": "git@github.com:even0490/yg-ui.git"
@@ -25,6 +35,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {},
+  "peerDependencies": {
+    "vue": "^2.5.16"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
@@ -97,8 +110,5 @@
       "pre-commit": "npm run lint",
       "pre-push": "npm run test"
     }
-  },
-  "peerDependencies": {
-    "vue": "^2.5.16"
   }
 }
