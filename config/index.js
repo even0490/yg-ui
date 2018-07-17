@@ -8,7 +8,7 @@ module.exports = {
   dev: {
     // Paths
     assetsSubDirectory: "static",
-    assetsPublicPath: "/",
+    assetsPublicPath: "/yg-ui/",
     proxyTable: {},
 
     // Various Dev Server settings
