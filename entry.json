@@ -2,6 +2,7 @@
   "index": "./src/index.js",
   "components": {
     "Button": "./src/components/Button",
-    "Input": "./src/components/Input"
+    "Input": "./src/components/Input",
+    "Toast": "./src/components/Toast/index.js"
   }
 }

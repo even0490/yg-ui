@@ -1,15 +1,12 @@
 <template>
-  <div :class="[
-    type === 'textarea' ? 'el-textarea' : 'el-input',
-    size ? 'el-input--' + size : '',
-    {
-      'is-disabled': disabled,
-      'el-input-group': $slots.prepend || $slots.append,
-      'el-input-group--append': $slots.append,
-      'el-input-group--prepend': $slots.prepend
-    }
-  ]">
+  <div class="mobTxt onePixel">
     <template v-if="type !== 'textarea'">
+      <!-- input 图标 -->
+      <slot name="icon">
+        <i class="input__icon"
+           :class="['icon-' + icon,onIconClick ? 'is-clickable' : '']" v-if="icon" @click="handleIconClick">
+        </i>
+      </slot>
       <input
         class="el-input__inner"
         :type="type"
@@ -21,6 +18,7 @@
         :minlength="minlength"
         :autocomplete="autoComplete"
         :autofocus="autofocus"
+        :inputType="inputType"
         :min="min"
         :max="max"
         :step="step"
@@ -35,123 +33,136 @@
   </div>
 </template>
 <script>
-  import calcTextareaHeight from './calcTextareaHeight';
-  import merge from 'element-ui/src/utils/merge';
+export default {
+  name: "ElInput",
 
-  export default {
-    name: 'ElInput',
+  componentName: "ElInput",
 
-    componentName: 'ElInput',
+  // mixins: [emitter],
 
-    data() {
-      return {
-        currentValue: this.value
-      };
+  data() {
+    return {
+      currentValue: this.value,
+      textareaCalcStyle: {}
+    };
+  },
+
+  props: {
+    styleType: String,
+    inputType: String,
+    value: [String, Number],
+    placeholder: String,
+    size: String,
+    resize: String,
+    readonly: Boolean,
+    autofocus: Boolean,
+    icon: String,
+    disabled: Boolean,
+    type: {
+      type: String,
+      default: "text"
     },
-
-    props: {
-      value: [String, Number],
-      placeholder: String,
-      size: String,
-      resize: String,
-      readonly: Boolean,
-      autofocus: Boolean,
-      icon: String,
-      disabled: Boolean,
-      type: {
-        type: String,
-        default: 'text'
-      },
-      name: String,
-      autosize: {
-        type: [Boolean, Object],
-        default: false
-      },
-      rows: {
-        type: Number,
-        default: 2
-      },
-      autoComplete: {
-        type: String,
-        default: 'off'
-      },
-      form: String,
-      maxlength: Number,
-      minlength: Number,
-      max: {},
-      min: {},
-      step: {},
-      validateEvent: {
-        type: Boolean,
-        default: true
-      },
-      onIconClick: Function
+    name: String,
+    autosize: {
+      type: [Boolean, Object],
+      default: false
     },
-
-    computed: {
-      validating() {
-        return this.$parent.validateState === 'validating';
-      },
+    rows: {
+      type: Number,
+      default: 2
     },
-
-    watch: {
-      'value'(val, oldValue) {
-        this.setCurrentValue(val);
-      }
+    autoComplete: {
+      type: String,
+      default: "off"
     },
-
-    methods: {
-      handleBlur(event) {
-        this.$emit('blur', event);
-        if (this.validateEvent) {
-          this.dispatch('ElFormItem', 'el.form.blur', [this.currentValue]);
-        }
-      },
-      inputSelect() {
-        this.$refs.input.select();
-      },
-      resizeTextarea() {
-        if (this.$isServer) return;
-        var { autosize, type } = this;
-        if (!autosize || type !== 'textarea') return;
-        const minRows = autosize.minRows;
-        const maxRows = autosize.maxRows;
-
-        this.textareaCalcStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows);
-      },
-      handleFocus(event) {
-        this.$emit('focus', event);
-      },
-      handleInput(event) {
-        const value = event.target.value;
-        this.$emit('input', value);
-        this.setCurrentValue(value);
-        this.$emit('change', value);
-      },
-      handleIconClick(event) {
-        if (this.onIconClick) {
-          this.onIconClick(event);
-        }
-        this.$emit('click', event);
-      },
-      setCurrentValue(value) {
-        if (value === this.currentValue) return;
-        this.$nextTick(_ => {
-          this.resizeTextarea();
-        });
-        this.currentValue = value;
-        if (this.validateEvent) {
-          this.dispatch('ElFormItem', 'el.form.change', [value]);
-        }
-      }
+    form: String,
+    maxlength: Number,
+    minlength: Number,
+    max: {},
+    min: {},
+    step: {},
+    validateEvent: {
+      type: Boolean,
+      default: true
     },
+    onIconClick: Function
+  },
 
-    created() {
-      this.$on('inputSelect', this.inputSelect);
+  methods: {
+    handleBlur(event) {
+      this.$emit("handleBlur", this.$refs.input.value);
+      // this[this.inputType]=this.$refs.input.value
     },
-
-    mounted() {
-      this.resizeTextarea();
+    handleFocus(event) {
+      this.$emit("handleFocus", event);
+      this[this.inputType] = this.$refs.input.value;
+    },
+    handleInput(event) {
+      this.$emit("input", event.target.value);
+    },
+    handleIconClick(event) {
+      this.$emit("click", event);
     }
-  };
+  },
+
+  created() {},
+
+  mounted() {}
+};
 </script>
+<style scope>
+.mobTxt {
+  height: 0.88rem;
+  background-color: #ffffff;
+  position: relative;
+  margin-bottom: 0.3rem;
+  border-radius: 0.1rem;
+}
+
+.mobTxt.onePixel::after {
+  border-width: 1px;
+  border-radius: 0.2rem;
+}
+
+.mobTxt input {
+  padding-left: 0.3rem;
+  width: 5.5rem;
+  font-size: 0.32rem;
+  line-height: 0.45rem;
+  color: #555555;
+  float: left;
+  height: 0.88rem;
+  position: relative;
+  border-radius: 0;
+  border: none;
+  background: none;
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.onePixel::after {
+  content: "";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-color: #dedede;
+  border-style: solid;
+  transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.small {
+  margin: 0 auto;
+}
+</style>
