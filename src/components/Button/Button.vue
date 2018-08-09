@@ -1,31 +1,44 @@
 <template>
-   
+
   <div class="container">
-      
-    <button
-         @click="handleClick"
-         class="confirm"
-         :style="{background: bgColor,color: txtColor, fontWeight: txtWeight}"
-        >{{btnTxt}}
+
+    <button @click="handleClick"
+            class="confirm"
+            :style="{background:bgColor,
+                    color: txtColor,
+                    fontWeight: txtWeight}">
+      {{btnTxt}}
     </button>
-     
+
   </div>
 </template>
 <script>
+import config from "../../config.js";
 export default {
+  name: "yg-button",
   data() {
     return {
       text: this.text,
       state: false
     };
   },
+  computed: {
+    bgColor() {
+      return config.Button[this.type + "Background"];
+    },
+    txtColor() {
+      return config.Button[this.type + "Text"];
+    }
+  },
   props: {
+    type: {
+      type: String,
+      default: "default"
+    },
     btnTxt: {
       type: String,
       default: "确认"
     },
-    bgColor: String,
-    txtColor: String,
     txtWeight: {
       type: String,
       default: "normal"

@@ -4,31 +4,31 @@
       <!-- input 图标 -->
       <slot name="icon">
         <i class="input__icon"
-           :class="['icon-' + icon,onIconClick ? 'is-clickable' : '']" v-if="icon" @click="handleIconClick">
+           :class="['icon-' + icon,onIconClick ? 'is-clickable' : '']"
+           v-if="icon"
+           @click="handleIconClick">
         </i>
       </slot>
-      <input
-        class="el-input__inner"
-        :type="type"
-        :name="name"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :readonly="readonly"
-        :maxlength="maxlength"
-        :minlength="minlength"
-        :autocomplete="autoComplete"
-        :autofocus="autofocus"
-        :inputType="inputType"
-        :min="min"
-        :max="max"
-        :step="step"
-        :form="form"
-        :value="currentValue"
-        ref="input"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-      >
+      <input class="el-input__inner"
+             :type="type"
+             :name="name"
+             :placeholder="placeholder"
+             :disabled="disabled"
+             :readonly="readonly"
+             :maxlength="maxlength"
+             :minlength="minlength"
+             :autocomplete="autoComplete"
+             :autofocus="autofocus"
+             :inputType="inputType"
+             :min="min"
+             :max="max"
+             :step="step"
+             :form="form"
+             :value="currentValue"
+             ref="input"
+             @input="handleInput"
+             @focus="handleFocus"
+             @blur="handleBlur">
     </template>
 
     <template v-if="type === 'checkCode'">
@@ -50,11 +50,7 @@
 </template>
 <script>
 export default {
-  name: "ElInput",
-
-  componentName: "ElInput",
-
-  // mixins: [emitter],
+  name: "yg-input",
 
   data() {
     return {

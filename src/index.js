@@ -8,9 +8,9 @@ const components = {
   Toast
 };
 
-const install = function(Vue) {
+const install = function(Vue, options) {
   Object.keys(components).forEach(key => {
-    Vue.use(components[key]);
+    Vue.use(components[key], options);
   });
 };
 

@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "Yg-Alert"
+  name: "yg-alert"
 };
 </script>
