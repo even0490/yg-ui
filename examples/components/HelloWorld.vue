@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <Layout></Layout>
-    <h1>{{ msg }}</h1>
+    <h3>{{ msg }}</h3>
     <!--<h2>Essential Links</h2>
     <ul>
       <li>
@@ -127,6 +127,7 @@
     <Input type="text" v-model="mobile" inputType="mobile" placeholder="这是手机号"></Input>
     <Input type="password" v-model="pwd" inputType="pwd" placeholder="这是测试"></Input>
     <Input type="text" v-model="email" inputType="email" placeholder="这是email"></Input>
+    <Input type="checkCode" v-model="checkCode" inputType="checkCode" placeholder="验证码">获取验证码</Input>
 
     <btn @handleClick="handleClick" bgColor="#f5825e" txtWeight="bold" txtColor="#fff" ref="btn"></btn>
     <btn @handleClick="handleClick2" btnTxt="取消" bgColor="#fff" txtHeight="1.2rem" txtWeight="bold" txtColor="#f5825e"
@@ -148,6 +149,7 @@
         mobile: '',
         pwd: '',
         email: '',
+        checkCode: ''
       };
     },
     components: {
@@ -208,7 +210,7 @@
     color: #42b983;
   }
 
-  .main {
+  .hello {
     padding: 0 0.4rem;
   }
 </style>

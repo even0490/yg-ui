@@ -1,6 +1,6 @@
 <template>
   <div class="mobTxt onePixel">
-    <template v-if="type !== 'textarea'">
+    <template v-if="type !== 'checkCode'">
       <!-- input 图标 -->
       <slot name="icon">
         <i class="input__icon"
@@ -30,6 +30,22 @@
         @blur="handleBlur"
       >
     </template>
+
+    <template v-if="type === 'checkCode'">
+      <div class="codeInput formItem">
+        <input type="tel"
+               v-model="code"
+               class=""
+               :maxlength="maxCode"
+               :placeholder="placeholder"
+               @input="inputHandler"/>
+      </div>
+      <div class="codeBtn formItem">
+        <span @click="getCode" class="">
+          <slot></slot>
+        </span>
+      </div>
+    </template>
   </div>
 </template>
 <script>
@@ -43,7 +59,8 @@ export default {
   data() {
     return {
       currentValue: this.value,
-      textareaCalcStyle: {}
+      textareaCalcStyle: {},
+      code: ""
     };
   },
 
@@ -62,6 +79,7 @@ export default {
       type: String,
       default: "text"
     },
+    maxCode: {},
     name: String,
     autosize: {
       type: [Boolean, Object],
@@ -100,9 +118,13 @@ export default {
     handleInput(event) {
       this.$emit("input", event.target.value);
     },
+    inputHandler(e) {
+      this.$emit("input", e.target.value);
+    },
     handleIconClick(event) {
       this.$emit("click", event);
-    }
+    },
+    getCode() {}
   },
 
   created() {},
@@ -164,5 +186,46 @@ export default {
 
 .small {
   margin: 0 auto;
+}
+
+.codeInput {
+  float: left;
+  height: 0.88rem;
+  width: 3.9rem;
+}
+
+.formItem input {
+  display: block;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.3rem;
+  font-size: 0.3rem;
+  background: transparent;
+}
+.codeBtn span {
+  display: block;
+  position: relative;
+  border-radius: 0.06rem;
+  font-size: 0.3rem;
+  line-height: 0.88rem;
+  text-align: center;
+  font-weight: bold;
+  background: rgb(245, 130, 94);
+  border: none;
+  color: rgb(255, 255, 255);
+}
+
+.codeBtn {
+  width: 2.3rem;
+  float: right;
+}
+
+.formItem::after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 </style>
