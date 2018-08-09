@@ -1,41 +1,34 @@
 <template>
   <div class="hello">
-    <Layout></Layout>
-    <h1>{{ msg }}</h1>
-
-    <Input type="text"
-           v-model="mobile"
-           inputType="mobile"
-           placeholder="这是手机号" />
-    <Input type="password"
-           v-model="pwd"
-           inputType="pwd"
-           placeholder="这是测试" />
-    <Input type="text"
-           v-model="email"
-           inputType="email"
-           placeholder="这是email" />
-    <btn @handleClick="handleClick"
-         bgColor="#f5825e"
-         txtWeight="bold"
-         txtColor="#fff"
-         ref="btn"></btn>
-    <btn @handleClick="handleClick2"
-         btnTxt="取消"
-         bgColor="#fff"
-         txtHeight="1.2rem"
-         txtWeight="bold"
-         txtColor="#f5825e"
-         ref="btn2"></btn>
+    <yg-input type="text"
+              v-model="mobile"
+              inputType="mobile"
+              placeholder="这是手机号" />
+    <yg-input type="password"
+              v-model="pwd"
+              inputType="pwd"
+              placeholder="这是测试" />
+    <yg-input type="text"
+              v-model="email"
+              inputType="email"
+              placeholder="这是email" />
+    <yg-button @handleClick="handleClick"
+               bgColor="#f5825e"
+               txtWeight="bold"
+               txtColor="#fff"
+               ref="btn"></yg-button>
+    <yg-button @handleClick="handleClick2"
+               btnTxt="取消"
+               bgColor="#fff"
+               txtHeight="1.2rem"
+               txtWeight="bold"
+               txtColor="#f5825e"
+               ref="btn2"></yg-button>
 
   </div>
 </template>
 
 <script>
-import Layout from "@/layout/Layout";
-import Input from "@/components/Input/Input";
-import btn from "@/components/Button/Button";
-
 export default {
   name: "HelloWorld",
   data() {
@@ -46,11 +39,7 @@ export default {
       email: ""
     };
   },
-  components: {
-    Layout,
-    Input,
-    btn
-  },
+  components: {},
   computed: {
     errors() {
       return this.$vuerify.$errors; // 错误信息会在 $vuerify.$errors 内体现
