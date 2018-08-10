@@ -15,10 +15,10 @@ export default config;
 
 export const setOptions = (options, componentName) => {
   if (componentName) {
-    Object.assign(config[componentName], options[componentName]);
+    Object.assign(config[componentName], options && options[componentName]);
   } else {
     Object.keys(config).forEach(key => {
-      Object.assign(config[key], options[key]);
+      Object.assign(config[key], options);
     });
   }
 };
