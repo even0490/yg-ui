@@ -66,7 +66,7 @@ export default {
       console.log(this.errors);
     },
     handleClick2() {
-      this.$toast("已取消", { type: "center" });
+      this.$toast(Math.random() + "");
       this.$refs.btn2.cancel();
     }
   }
