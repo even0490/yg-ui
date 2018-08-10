@@ -3,7 +3,7 @@ let config = {
     defaultBackground: "red",
     defaultText: "white",
     defaultBorder: "yellow",
-    infoBackground:''
+    infoBackground: ""
   },
   Input: {
     defaultBackground: "red",
