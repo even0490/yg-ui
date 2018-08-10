@@ -35,7 +35,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "vuerify": "^0.4.0"
+    "vuerify": "^0.4.0",
+    "simple-assign": "^0.1.0"
   },
   "peerDependencies": {
     "vue": "^2.5.16"

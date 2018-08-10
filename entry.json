@@ -3,6 +3,7 @@
   "components": {
     "Button": "./src/components/Button",
     "Input": "./src/components/Input",
-    "Toast": "./src/components/Toast/index.js"
+    "Toast": "./src/components/Toast/index.js",
+    "vuerify": "./src/components/vuerify/index.js"
   }
 }

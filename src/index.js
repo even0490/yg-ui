@@ -1,6 +1,7 @@
 import Button from "./components/Button";
 import Input from "./components/Input";
 import Toast from "./components/Toast/index.js";
+import directive from "./directive.js";
 
 const components = {
   Button,

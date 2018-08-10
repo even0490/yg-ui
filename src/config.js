@@ -2,7 +2,8 @@ let config = {
   Button: {
     defaultBackground: "red",
     defaultText: "white",
-    defaultBorder: "yellow"
+    defaultBorder: "yellow",
+    infoBackground:''
   },
   Input: {
     defaultBackground: "red",

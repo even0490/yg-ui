@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log(this.mobile);
       console.log(this.errors);
     },
     handleClick2() {
