@@ -22,7 +22,7 @@ export default {
     };
   },
   methods: {
-    show(options) {
+    show(options = {}) {
       Object.keys(options).forEach(key => {
         this[key] = options[key];
       });
@@ -30,7 +30,7 @@ export default {
       clearTimeout(this.timeout);
       return new Promise(resolve => {
         this.timeout = setTimeout(() => {
-          // this.showFlag = false;
+          this.showFlag = false;
           resolve();
         }, this.time);
       });
