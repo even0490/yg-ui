@@ -1,9 +1,45 @@
 .yg-fade-enter-active,
 .yg-fade-leave-active {
   opacity: 1;
-  transition: opacity linear 0.2s;
+  transition: opacity linear 0.4s;
 }
 .yg-fade-enter,
 .yg-fade-leave-to {
   opacity: 0;
+}
+
+.yg-zoom-enter,
+.yg-zoom-leave-to {
+  transform-origin: center;
+}
+
+.yg-zoom-enter-active {
+  animation: zoomIn 0.4s;
+}
+
+.yg-zoom-leave-active {
+  animation: zoomOut 0.4s;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 0;
+  }
 }

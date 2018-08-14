@@ -59,7 +59,7 @@ export default {
       code: ""
     };
   },
-  inject:['foo'],
+  inject: ["foo"],
   props: {
     styleType: String,
     inputType: String,
@@ -122,12 +122,12 @@ export default {
     },
     getCode() {}
   },
-  render (h) {
-    return null
+  render(h) {
+    return null;
   },
 
   created() {
-    console.log(this.foo)
+    console.log(this.foo);
     // this.foo = '改变input的值'
     /*var vm = this
     vm.check(function (checkItem) {
@@ -139,9 +139,9 @@ export default {
 };
 </script>
 <style scope>
-  .mobTxt .input-error {
-    background-color: red;
-  }
+.mobTxt .input-error {
+  background-color: red;
+}
 .mobTxt {
   height: 0.88rem;
   background-color: #ffffff;

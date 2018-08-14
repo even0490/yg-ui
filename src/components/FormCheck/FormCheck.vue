@@ -5,26 +5,26 @@
 </template>
 
 <script>
-  export default {
-    name: "yg-formCheck",
-    data: function () {
-      return {
-        checkItem: []
-      }
-    },
-    provide: {
-      foo: 'bar'
-    },
+export default {
+  name: "yg-formCheck",
+  data: function() {
+    return {
+      checkItem: []
+    };
+  },
+  provide: {
+    foo: "bar"
+  },
 
-    mounted: function () {
-      // alert(1)
-      this.checkItem = [1,2]
-    },
-    methods: {
-      check: function (found) {
-        var vm = this
-        found();
-      }
-    },
-  };
+  mounted: function() {
+    // alert(1)
+    this.checkItem = [1, 2];
+  },
+  methods: {
+    check: function(found) {
+      var vm = this;
+      found();
+    }
+  }
+};
 </script>
