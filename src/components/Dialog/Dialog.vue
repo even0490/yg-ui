@@ -50,12 +50,12 @@ export default {
         }, this.time);
       });
     }
-  },
-  mounted() {
-    setInterval(() => {
-      this.showFlag = !this.showFlag;
-    }, 1000);
   }
+  // mounted() {
+  //   setInterval(() => {
+  //     this.showFlag = !this.showFlag;
+  //   }, 1000);
+  // }
 };
 </script>
 
