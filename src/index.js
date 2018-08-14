@@ -1,13 +1,15 @@
 import Button from "./components/Button";
 import Input from "./components/Input";
-import directive from "./directive.js";
+import FormCheck from "./components/FormCheck";
+import directive from "./components/Check/index.js";
 import Toast from "./components/Toast";
 import ToastPlugin from "./plugin/toast";
 
 const components = {
   Button,
   Input,
-  Toast
+  Toast,
+  FormCheck
 };
 
 const plugin = {
