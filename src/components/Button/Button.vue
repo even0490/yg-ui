@@ -7,7 +7,7 @@
             :style="{ background:bgColor,
                       color: txtColor,
                       fontWeight: txtWeight }">
-      <slot></slot>
+      <slot>submit</slot>
     </button>
   </div>
 </template>
