@@ -3,7 +3,7 @@
   "components": {
     "Button": "./src/components/Button",
     "Input": "./src/components/Input",
-    "FormCheck": "./src/components/FormCheck",
+    "Form": "./src/components/Form",
     "Toast": "./src/components/Toast/index.js",
     "vuerify": "./src/components/vuerify/index.js"
   }

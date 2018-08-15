@@ -2,7 +2,7 @@ import Alert from "./components/Alert";
 import Button from "./components/Button";
 import Dialog from "./components/Dialog";
 import Input from "./components/Input";
-import FormCheck from "./components/FormCheck";
+import Form from "./components/Form";
 import directive from "./components/Check/index.js";
 import Toast from "./components/Toast";
 import Loading from "./components/Loading";
@@ -15,7 +15,7 @@ const components = {
   Dialog,
   Input,
   Toast,
-  FormCheck,
+  Form,
   Loading
 };
 

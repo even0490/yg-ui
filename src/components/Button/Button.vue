@@ -71,11 +71,11 @@ export default {
 .container button {
   display: block;
   width: 100%;
-  height: 0.88rem;
+  height: 88px;
   text-align: center;
   border: none;
   border-radius: 4px;
-  margin: 0.3rem auto 0;
+  margin: 15px auto 0;
   outline: none;
 }
 </style>

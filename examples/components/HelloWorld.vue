@@ -1,35 +1,35 @@
 <template>
   <div class="hello">
 
-    <yg-formCheck>
-      <yg-input placeholder="测试依赖注入"></yg-input>
-    </yg-formCheck>
-    <yg-formCheck :checkDate="checkDate">
-      <yg-input class="v-check"  v-checkParam="{required:true,regex:'^[abcde]*$',regTxt:'名字不能为空'}" type="password"
+    <yg-form ref="formDate" :checkDefault="checkDefault">
+
+      <yg-input id="phone" icon="0102" class="v-check" :rule="rulePhone" type="password"
                 v-model="pwd"
                 inputType="pwd"
-                placeholder="这是测试"/>
-      <yg-input class="v-check" v-checkParam="{required:true,regex:'IpRegex',regTxt:'ip不能为空'}" type="text"
+                placeholder="这是测试">
+      </yg-input>
+      <yg-input id="code" class="v-check" :rule="ruleCode" type="text"
                 v-model="email"
                 inputType="email"
-                placeholder="这是email"/>
-      <yg-input class="v-check" v-checkParam="{required:true,regex:'IpRegex',regTxt:'ip不能为空'}"  type="text"
+                placeholder="这是email"></yg-input>
+      <yg-input id="passWord" class="v-check" :rule="rulePassWord" type="text"
                 v-model="mobile"
                 inputType="mobile"
-                placeholder="这是手机号"/>
-    </yg-formCheck>
-    <yg-button v-formCheck
-               bgColor="#f5825e"
-               txtWeight="bold"
-               txtColor="#fff"
-               ref="btn"></yg-button>
-    <yg-button @handleClick="handleClick2"
+                placeholder="这是手机号"></yg-input>
+    </yg-form>
+    <yg-button
+      @handleClick="checkForm"
+      bgColor="#f5825e"
+      txtWeight="bold"
+      txtColor="#fff"
+      ref="btn"></yg-button>
+    <!--<yg-button @handleClick="handleClick2"
                btnTxt="取消"
                bgColor="#fff"
                txtHeight="1.2rem"
                txtWeight="bold"
                txtColor="#f5825e"
-               ref="btn2"></yg-button>
+               ref="btn2"></yg-button>-->
   </div>
 </template>
 
@@ -43,12 +43,18 @@
         mobile: "",
         pwd: "",
         email: "",
-        checkDate:{}
+        checkDefault: {
+          phone: '手机号不能为空',
+          passWord: '密码不能为空',
+          code: '验证码不能为空',
+        },
+        rulePhone: {required: true, regex: /^[abcde]*$/, regTxt: '名字有误'},
+        ruleCode: {required: true, regex: /^[0-9]$/, regTxt: '只能是数字'},
+        rulePassWord: {required: true, regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/, regTxt: '密码有误'},
       };
     },
     components: {},
-    computed: {
-    },
+    computed: {},
     methods: {
       handleClick() {
         console.log(this.errors);
@@ -57,10 +63,9 @@
         this.$toast(Math.random() + "");
         this.$refs.btn2.cancel();
       },
-      submit() {
-        // console.log(this.err);
-        alert('通过校验')
-      },
+      checkForm() {
+        // console.log(this.$refs.formDate.checkDate);
+      }
     }
   };
 </script>
@@ -88,6 +93,7 @@
   .main {
     padding: 0 0.4rem;
   }
+
   .input-error {
     background-color: red;
   }

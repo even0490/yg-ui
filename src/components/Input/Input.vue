@@ -1,15 +1,9 @@
 <template>
   <div class="mobTxt onePixel">
-    <template v-if="type !== 'checkCode'">
       <!-- input 图标 -->
-      <slot name="icon">
-        <i class="input__icon"
-           :class="['icon-' + icon,onIconClick ? 'is-clickable' : '']"
-           v-if="icon"
-           @click="handleIconClick">
-        </i>
-      </slot>
-      <input class="el-input__inner"
+      <img class="icon" v-if="icon" :src="'../assets/'+icon+'.png'" alt="">
+      <input :id="id"
+             :rule="rule"
              :type="type"
              :name="name"
              :placeholder="placeholder"
@@ -26,26 +20,8 @@
              :form="form"
              :value="currentValue"
              ref="input"
-             @input="handleInput"
-             @focus="handleFocus"
-             @blur="handleBlur">
-    </template>
-
-    <template v-if="type === 'checkCode'">
-      <div class="codeInput formItem">
-        <input type="tel"
-               v-model="code"
-               class=""
-               :maxlength="maxCode"
-               :placeholder="placeholder"
-               @input="inputHandler"/>
-      </div>
-      <div class="codeBtn formItem">
-        <span @click="getCode" class="">
-          <slot></slot>
-        </span>
-      </div>
-    </template>
+             @blur="handleBlur"
+             @input="handleInput">
   </div>
 </template>
 <script>
@@ -59,9 +35,12 @@ export default {
       code: ""
     };
   },
-  inject: ["foo"],
+  inject: ["checkForm"],
   props: {
-    styleType: String,
+    id: String,
+    rule: {
+      type: [String, Object]
+    },
     inputType: String,
     value: [String, Number],
     placeholder: String,
@@ -103,15 +82,10 @@ export default {
   },
 
   methods: {
-    handleBlur(event) {
-      this.$emit("handleBlur", this.$refs.input.value);
-      // this[this.inputType]=this.$refs.input.value
-    },
-    handleFocus(event) {
-      this.$emit("handleFocus", event);
-      this[this.inputType] = this.$refs.input.value;
-    },
     handleInput(event) {
+      /*console.log(this.$refs);
+        console.log(this.rule);*/
+      // console.log(this.checkForm)
       this.$emit("input", event.target.value);
     },
     inputHandler(e) {
@@ -120,20 +94,17 @@ export default {
     handleIconClick(event) {
       this.$emit("click", event);
     },
-    getCode() {}
+    handleBlur(e) {
+      var vm = this;
+      // console.log(this.$refs.input.value);
+      this.checkForm(vm);
+    }
   },
   render(h) {
     return null;
   },
 
-  created() {
-    console.log(this.foo);
-    // this.foo = '改变input的值'
-    /*var vm = this
-    vm.check(function (checkItem) {
-
-    })*/
-  },
+  created() {},
 
   mounted() {}
 };
@@ -141,6 +112,14 @@ export default {
 <style scope>
 .mobTxt .input-error {
   background-color: red;
+}
+.icon {
+  display: block;
+  float: left;
+  width: 17px;
+  height: 17px;
+  line-height: 100%;
+  /*padding: 16px 8px 0 11px;*/
 }
 .mobTxt {
   height: 0.88rem;
@@ -212,6 +191,7 @@ export default {
   font-size: 0.3rem;
   background: transparent;
 }
+
 .codeBtn span {
   display: block;
   position: relative;
