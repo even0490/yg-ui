@@ -3,6 +3,16 @@
   "components": {
     "Button": "./src/components/Button",
     "Input": "./src/components/Input",
-    "Toast": "./src/components/Toast/index.js"
+    "Dialog": "./src/components/Dialog",
+    "Loading": "./src/components/Loading",
+    "Notification": "./src/components/Notification",
+    "Toast": "./src/components/Toast"
+  },
+  "plugin": {
+    "alert": "./src/plugin/alert",
+    "confirm": "./src/plugin/confirm",
+    "dialog": "./src/plugin/dialog",
+    "loading": "./src/plugin/loading",
+    "toast": "./src/plugin/toast"
   }
 }

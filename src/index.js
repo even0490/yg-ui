@@ -1,4 +1,5 @@
-import Alert from "./components/Alert";
+import "./style/reset.css";
+import Notification from "./components/Notification";
 import Button from "./components/Button";
 import Dialog from "./components/Dialog";
 import Input from "./components/Input";
@@ -6,9 +7,12 @@ import Toast from "./components/Toast";
 import Loading from "./components/Loading";
 import ToastPlugin from "./plugin/toast";
 import LoadingPlugin from "./plugin/loading";
+import DialogPlugin from "./plugin/dialog";
+import AlertPlugin from "./plugin/alert";
+import ConfirmPlugin from "./plugin/confirm";
 
 const components = {
-  Alert,
+  Notification,
   Button,
   Dialog,
   Input,
@@ -18,7 +22,10 @@ const components = {
 
 const plugin = {
   ToastPlugin,
-  LoadingPlugin
+  LoadingPlugin,
+  DialogPlugin,
+  AlertPlugin,
+  ConfirmPlugin
 };
 
 const install = function(Vue, options) {

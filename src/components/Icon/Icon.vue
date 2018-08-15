@@ -1,0 +1,45 @@
+<template>
+  <div class="yg-icon">
+    <svg viewBox="0 0 1024 1024"
+         class="yg-icon-close"
+         :width="width"
+         :height="height">
+      <path d="M806.4 172.8l-633.6 633.6c-12.8 12.8-12.8 32 0 44.8 12.8 12.8 32 12.8 44.8 0l633.6-633.6c12.8-12.8 12.8-32 0-44.8-12.8-12.8-32-12.8-44.8 0z"
+            fill="#bfbfbf"
+            p-id="986"></path>
+      <path d="M172.8 172.8c-12.8 12.8-12.8 32 0 44.8l633.6 633.6c12.8 12.8 32 12.8 44.8 0 12.8-12.8 12.8-32 0-44.8L217.6 172.8c-12.8-12.8-32-12.8-44.8 0z"
+            fill="#bfbfbf"
+            p-id="987"></path>
+    </svg>
+  </div>
+
+</template>
+
+<script>
+export default {
+  name: "yg-icon",
+  props: {
+    width: {
+      default: 30
+    },
+    height: {
+      default: 30
+    },
+    type: {
+      default: "close",
+      type: String
+    }
+  }
+};
+</script>
+
+<style scoped>
+.yg-icon {
+  -webkit-tap-highlight-color: transparent;
+}
+.yg-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+</style>

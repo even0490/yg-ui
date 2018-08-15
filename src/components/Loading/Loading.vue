@@ -1,12 +1,17 @@
 <template>
   <transition name="fade">
-    <div v-show="showFlag" class="yg-loading">
-      <div v-show="isShowMask && showFlag" class="yg-loading-mask"></div>
+    <div v-show="showFlag"
+         class="yg-loading">
+      <div v-show="isShowMask && showFlag"
+           class="yg-loading-mask"></div>
       <div class="yg-loading-box">
         <div class="yg-loading-icon">
-          <img class="yg-loading-astronaut" src="../../assets/astronaut.png" alt="astronaut">
+          <img class="yg-loading-astronaut"
+               src="../../assets/astronaut.png"
+               alt="astronaut">
         </div>
-        <p class="yg-loading-content" v-if="text">{{text}}</p>
+        <p class="yg-loading-content"
+           v-if="text">{{text}}</p>
         <slot></slot>
       </div>
     </div>
@@ -20,14 +25,20 @@ export default {
     return {
       isShowMask: true,
       showFlag: false,
-      text: "正在加载"
+      text: "正在加载",
+      defaultOption: {
+        isShowMask: true,
+        text: "正在加载"
+      }
     };
   },
   methods: {
-    show(options) {
-      this.text = options.text === undefined ? this.text : options.text;
-      this.isShowMask =
-        options.isShowMask === undefined ? this.isShowMask : options.isShowMask;
+    show({
+      isShowMask = this.defaultOption.isShowMask,
+      text = this.defaultOption.text
+    }) {
+      this.text = text;
+      this.isShowMask = isShowMask;
       this.showFlag = true;
     },
     hide() {

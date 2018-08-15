@@ -1,11 +1,29 @@
 <template>
   <div class="hello">
-    <yg-input type="text" v-model="mobile" inputType="mobile" placeholder="这是手机号" />
-    <yg-input type="password" v-model="pwd" inputType="pwd" placeholder="这是测试" />
-    <yg-input type="text" v-model="email" inputType="email" placeholder="这是email" />
-    <yg-button @handleClick="handleClick" bgColor="#f5825e" txtWeight="bold" txtColor="#fff" ref="btn"></yg-button>
-    <yg-button @handleClick="handleClick2" btnTxt="取消" bgColor="#fff" txtHeight="1.2rem" txtWeight="bold" txtColor="#f5825e" ref="btn2"></yg-button>
-    <yg-dialog></yg-dialog>
+    <yg-input type="text"
+              v-model="mobile"
+              inputType="mobile"
+              placeholder="这是手机号" />
+    <yg-input type="password"
+              v-model="pwd"
+              inputType="pwd"
+              placeholder="这是测试" />
+    <yg-input type="text"
+              v-model="email"
+              inputType="email"
+              placeholder="这是email" />
+    <yg-button @click="handleClick"
+               bgColor="#f5825e"
+               txtWeight="bold"
+               txtColor="#fff"
+               ref="btn"></yg-button>
+    <yg-button @click="handleClick2"
+               btnTxt="取消"
+               bgColor="#fff"
+               txtHeight="1.2rem"
+               txtWeight="bold"
+               txtColor="#f5825e"
+               ref="btn2"></yg-button>
   </div>
 </template>
 
@@ -45,12 +63,8 @@ export default {
     handleClick() {
       console.log(this.mobile);
       console.log(this.errors);
-      this.$loading.hide();
     },
-    handleClick2() {
-      this.$loading.show();
-      this.$refs.btn2.cancel();
-    }
+    handleClick2() {}
   }
 };
 </script>
@@ -78,4 +92,4 @@ a {
 .main {
   padding: 0 0.4rem;
 }
-</style>
+</style>r
