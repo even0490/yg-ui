@@ -63,8 +63,11 @@ export default {
     handleClick() {
       console.log(this.mobile);
       console.log(this.errors);
+      this.$confirm("123");
     },
-    handleClick2() {}
+    handleClick2() {
+      this.$alert("123");
+    }
   }
 };
 </script>

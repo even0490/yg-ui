@@ -28,7 +28,7 @@ const plugin = {
   ConfirmPlugin
 };
 
-const install = function(Vue, options) {
+const install = function(Vue, options = {}) {
   Object.keys(components).forEach(key => {
     Vue.use(components[key], options[key]);
   });

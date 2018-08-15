@@ -90,6 +90,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: "commons",
       async: true,
+      children: true,
+      deepChildren: true,
       minChunks: 2
     }),
     // // extract webpack runtime and module manifest to its own file in order to
