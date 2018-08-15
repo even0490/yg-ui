@@ -1,15 +1,14 @@
 <template>
-
-  <div class="container">
-
+  <div class="yg-button"
+       :class="className">
     <button @click="handleClick"
-            class="confirm"
-            :style="{background:bgColor,
-                    color: txtColor,
-                    fontWeight: txtWeight}">
-      {{btnTxt}}
+            :class="btnClass"
+            :disabled="disabled"
+            :style="{ background:bgColor,
+                      color: txtColor,
+                      fontWeight: txtWeight }">
+      <slot>submit</slot>
     </button>
-
   </div>
 </template>
 <script>
@@ -24,20 +23,49 @@ export default {
   },
   computed: {
     bgColor() {
-      return config.Button[this.type + "Background"];
+      return config.Button[
+        (this.disabled ? "disabled" : this.type) + "Background"
+      ];
     },
     txtColor() {
-      return config.Button[this.type + "Text"];
+      return config.Button[(this.disabled ? "disabled" : this.type) + "Text"];
+    },
+    btnClass() {
+      return "yg-button-" + (this.disabled ? "disabled" : this.type);
+    },
+    className() {
+      let className = "";
+      switch (this.size) {
+        case "mini":
+          className = "yg-button-mini";
+          break;
+        case "small":
+          className = "yg-button-small";
+          break;
+        case "medium":
+          className = "yg-button-medium";
+          break;
+        default:
+          className = "yg-button-medium";
+          break;
+      }
+      return className;
     }
   },
   props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     type: {
       type: String,
       default: "default"
     },
-    btnTxt: {
+    size: {
       type: String,
-      default: "确认"
+      validator: function(value) {
+        return ["mini", "small", "medium"].indexOf(value) !== -1;
+      }
     },
     txtWeight: {
       type: String,
@@ -52,23 +80,31 @@ export default {
     handleClick(evt) {
       this.text += "...";
       this.state = true;
-      this.$emit("handleClick", evt);
-    },
-    cancel() {
-      console.log("退出");
+      this.$emit("click", evt);
     }
   }
 };
 </script>
-<style scoped>
-.container {
+<style lang="scss" scoped>
+@import "../../style/border.scss";
+.yg-button {
   border: none;
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 16px;
   text-align: center;
 }
-
-.container button {
+.yg-button-mini {
+  height: 30px;
+  font-size: 14px;
+}
+.yg-button-small {
+  height: 40px;
+}
+.yg-button-medium {
+  height: 44px;
+}
+.yg-button button {
+  padding: 0 20px;
   display: block;
   width: 100%;
   height: 88px;
@@ -77,5 +113,8 @@ export default {
   border-radius: 4px;
   margin: 15px auto 0;
   outline: none;
+}
+.yg-button .yg-button-cancel {
+  @include border(1px, #e8e8e8, solid, 4px);
 }
 </style>

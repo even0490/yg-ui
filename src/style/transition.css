@@ -1,7 +1,7 @@
 .yg-fade-enter-active,
 .yg-fade-leave-active {
   opacity: 1;
-  transition: opacity linear 0.4s;
+  transition: opacity linear 0.2s;
 }
 .yg-fade-enter,
 .yg-fade-leave-to {
@@ -14,11 +14,11 @@
 }
 
 .yg-zoom-enter-active {
-  animation: zoomIn 0.4s;
+  animation: zoomIn 0.2s;
 }
 
 .yg-zoom-leave-active {
-  animation: zoomOut 0.4s;
+  animation: zoomOut 0.2s;
 }
 
 @keyframes zoomIn {

@@ -23,13 +23,6 @@
       txtWeight="bold"
       txtColor="#fff"
       ref="btn"></yg-button>
-    <!--<yg-button @handleClick="handleClick2"
-               btnTxt="取消"
-               bgColor="#fff"
-               txtHeight="1.2rem"
-               txtWeight="bold"
-               txtColor="#f5825e"
-               ref="btn2"></yg-button>-->
   </div>
 </template>
 
@@ -67,7 +60,7 @@
         // console.log(this.$refs.formDate.checkDate);
       }
     }
-  };
+  }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

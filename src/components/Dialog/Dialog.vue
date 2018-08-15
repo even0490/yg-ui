@@ -1,11 +1,18 @@
 <template>
   <div class="yg-dialog">
     <transition name="yg-fade">
-      <div class="yg-dialog-mask" v-show="isShowMask&&showFlag"></div>
+      <div class="yg-dialog-mask"
+           @click="()=>{this.maskHide&&this.hide()}"
+           v-show="isShowMask && showFlag"></div>
     </transition>
     <transition name="yg-zoom">
-      <div class="yg-dialog-box" :class="className" v-show="showFlag">
+      <div class="yg-dialog-box"
+           :class="className"
+           v-show="showFlag">
         <slot></slot>
+        <div class="yg-dialog-content"
+             @click="hide"
+             v-if="text">{{text}}</div>
       </div>
     </transition>
   </div>
@@ -17,9 +24,21 @@ export default {
   data() {
     return {
       isShowMask: true,
-      showFlag: true,
-      position: "top"
+      showFlag: false,
+      position: "top",
+      text: "",
+      defaultOption: {
+        isShowMask: true,
+        position: "top",
+        text: ""
+      }
     };
+  },
+  props: {
+    maskHide: {
+      type: Boolean,
+      default: true
+    }
   },
   computed: {
     className() {
@@ -37,25 +56,20 @@ export default {
     }
   },
   methods: {
-    show(options = {}) {
-      Object.keys(options).forEach(key => {
-        this[key] = options[key];
-      });
+    show({
+      text = this.defaultOption.text,
+      isShowMask = this.defaultOption.isShowMask,
+      position = this.defaultOption.position
+    }) {
+      this.text = text;
+      this.isShowMask = isShowMask;
+      this.position = position;
       this.showFlag = true;
-      clearTimeout(this.timeout);
-      return new Promise(resolve => {
-        this.timeout = setTimeout(() => {
-          this.showFlag = false;
-          resolve();
-        }, this.time);
-      });
+    },
+    hide() {
+      this.showFlag = false;
     }
   }
-  // mounted() {
-  //   setInterval(() => {
-  //     this.showFlag = !this.showFlag;
-  //   }, 1000);
-  // }
 };
 </script>
 
@@ -73,6 +87,7 @@ export default {
   background: rgba(0, 0, 0, 0.7);
   overflow: hidden;
 }
+
 .yg-dialog-box {
   position: fixed;
   display: table;
@@ -81,19 +96,26 @@ export default {
   left: 0px;
   box-sizing: border-box;
   width: 273px;
-  padding: 15px;
-  text-align: center;
   z-index: 9999;
   border-radius: 5px;
   background: white;
   overflow: hidden;
 }
+
 .yg-dialog-middle-box {
   top: 0px;
   margin: auto;
 }
+
 .yg-dialog-top-box {
   top: 100px;
   margin: 0 auto;
+}
+.yg-dialog-content {
+  padding: 16px 24px;
+  color: rgb(102, 102, 102);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
 }
 </style>

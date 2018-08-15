@@ -2,7 +2,8 @@
   <div class="yg-toast">
     <div v-show="isShowMask && showFlag"></div>
     <transition name="yg-fade">
-      <div class="yg-toast-box" v-show="showFlag">
+      <div class="yg-toast-box"
+           v-show="showFlag">
         <p class="yg-toast__content">{{text}}</p>
       </div>
     </transition>
@@ -18,14 +19,23 @@ export default {
       timeout: null,
       time: 2000,
       isShowMask: false,
-      text: ""
+      text: "",
+      defaultOption: {
+        time: 2000,
+        isShowMask: false,
+        text: ""
+      }
     };
   },
   methods: {
-    show(options = {}) {
-      Object.keys(options).forEach(key => {
-        this[key] = options[key];
-      });
+    show({
+      text = this.defaultOption.text,
+      isShowMask = this.defaultOption.isShowMask,
+      time = this.defaultOption.time
+    }) {
+      this.text = text;
+      this.time = time;
+      this.isShowMask = isShowMask;
       this.showFlag = true;
       clearTimeout(this.timeout);
       return new Promise(resolve => {
