@@ -10,6 +10,12 @@ let config = {
   Input: {
     defaultBackground: "red",
     defaultBorder: "yellow"
+  },
+  CheckBox: {
+    borderColor: "#c3ab69",
+    unCheckBg: "white",
+    checkBg: "white",
+    checkColor: "#c3ab69"
   }
 };
 

@@ -3,8 +3,11 @@ import Notification from "./components/Notification";
 import Button from "./components/Button";
 import Dialog from "./components/Dialog";
 import Input from "./components/Input";
+import Icon from "./components/Icon";
 import Toast from "./components/Toast";
 import Loading from "./components/Loading";
+import CheckBox from "./components/CheckBox";
+import CheckBoxGroup from "./components/CheckBoxGroup";
 import ToastPlugin from "./plugin/toast";
 import LoadingPlugin from "./plugin/loading";
 import DialogPlugin from "./plugin/dialog";
@@ -16,8 +19,11 @@ const components = {
   Button,
   Dialog,
   Input,
+  Icon,
   Toast,
-  Loading
+  Loading,
+  CheckBox,
+  CheckBoxGroup
 };
 
 const plugin = {

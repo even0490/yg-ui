@@ -4,6 +4,10 @@ body {
   height: 100%;
 }
 
+*::after {
+  box-sizing: border-box;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -150,6 +154,7 @@ textarea {
   resize: vertical;
 }
 svg,
+label,
 input,
 textarea,
 button,

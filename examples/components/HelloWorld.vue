@@ -24,10 +24,19 @@
                txtWeight="bold"
                txtColor="#f5825e"
                ref="btn2"></yg-button>
+    <yg-checkbox-group v-model="checkedCities"
+                       @change="handleCheckedCitiesChange">
+      <yg-checkbox v-for="city in cities"
+                   :label="city"
+                   :key="city">{{city}}</yg-checkbox>
+    </yg-checkbox-group>
+    <yg-checkbox v-model="checkVal"></yg-checkbox>
+
   </div>
 </template>
 
 <script>
+import logo from "../assets/logo.png";
 export default {
   name: "HelloWorld",
   data() {
@@ -35,13 +44,21 @@ export default {
       msg: "Welcome to Your Vue.js App",
       mobile: "",
       pwd: "",
-      email: ""
+      email: "",
+      checkVal: true,
+      cities: ["上海", "北京", "广州", "深圳"],
+      checkedCities: ["上海", "北京"]
     };
   },
   components: {},
   computed: {
     errors() {
       return this.$vuerify.$errors; // 错误信息会在 $vuerify.$errors 内体现
+    },
+    logo() {
+      console.log(logo);
+
+      return logo;
     }
   },
   vuerify: {
@@ -67,6 +84,9 @@ export default {
     },
     handleClick2() {
       this.$alert("123");
+    },
+    handleCheckedCitiesChange(v) {
+      console.log(v, this.checkedCities);
     }
   }
 };

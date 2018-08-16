@@ -1,6 +1,7 @@
 <template>
   <div class="yg-icon">
-    <svg viewBox="0 0 1024 1024"
+    <svg v-if="type==='close'"
+         viewBox="0 0 1024 1024"
          class="yg-icon-close"
          :width="width"
          :height="height">
@@ -11,13 +12,38 @@
             fill="#bfbfbf"
             p-id="987"></path>
     </svg>
+    <img v-else
+         :src="imgSrc"
+         alt="icon">
   </div>
 
 </template>
 
 <script>
+import right from "../../assets/right.png";
+import closeeye from "../../assets/closeeye.png";
+import openeye from "../../assets/openeye.png";
 export default {
   name: "yg-icon",
+  computed: {
+    imgSrc() {
+      switch (this.type) {
+        case "right":
+          return right;
+          break;
+        case "closeeye":
+          return closeeye;
+          break;
+        case "openeye":
+          return openeye;
+          break;
+
+        default:
+          return this.src;
+          break;
+      }
+    }
+  },
   props: {
     width: {
       default: 30
@@ -26,7 +52,10 @@ export default {
       default: 30
     },
     type: {
-      default: "close",
+      type: String
+    },
+    src: {
+      default: "",
       type: String
     }
   }
@@ -37,7 +66,8 @@ export default {
 .yg-icon {
   -webkit-tap-highlight-color: transparent;
 }
-.yg-icon svg {
+.yg-icon svg,
+.yg-icon img {
   display: block;
   width: 100%;
   height: 100%;
