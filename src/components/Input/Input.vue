@@ -1,7 +1,10 @@
 <template>
   <div class="mobTxt onePixel">
-      <!-- input 图标 -->
-      <img class="icon" v-if="icon" :src="'../assets/'+icon+'.png'" alt="">
+    <div :class="iconLeft=='left'?'icon-left':''">
+      <slot name="iconLeft">
+      </slot>
+    </div>
+    <div class="input-content">
       <input :id="id"
              :rule="rule"
              :type="type"
@@ -18,10 +21,18 @@
              :max="max"
              :step="step"
              :form="form"
-             :value="currentValue"
+             v-model="currentValue"
              ref="input"
              @blur="handleBlur"
              @input="handleInput">
+    </div>
+
+
+    <div :class="iconClose =='close'?'icon-close':''">
+      <slot name="iconClose">
+
+      </slot>
+    </div>
   </div>
 </template>
 <script>
@@ -38,9 +49,11 @@ export default {
   inject: ["checkForm"],
   props: {
     id: String,
+    iconClose: String,
     rule: {
       type: [String, Object]
     },
+    iconLeft: String,
     inputType: String,
     value: [String, Number],
     placeholder: String,
@@ -77,31 +90,20 @@ export default {
     validateEvent: {
       type: Boolean,
       default: true
-    },
-    onIconClick: Function
+    }
   },
 
   methods: {
     handleInput(event) {
-      /*console.log(this.$refs);
-        console.log(this.rule);*/
-      // console.log(this.checkForm)
       this.$emit("input", event.target.value);
-    },
-    inputHandler(e) {
-      this.$emit("input", e.target.value);
     },
     handleIconClick(event) {
       this.$emit("click", event);
     },
     handleBlur(e) {
       var vm = this;
-      // console.log(this.$refs.input.value);
       this.checkForm(vm);
     }
-  },
-  render(h) {
-    return null;
   },
 
   created() {},
@@ -110,38 +112,59 @@ export default {
 };
 </script>
 <style scope>
-.mobTxt .input-error {
-  background-color: red;
+.icon-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  zoom: 1;
+  margin-left: 10px;
 }
-.icon {
-  display: block;
-  float: left;
-  width: 17px;
-  height: 17px;
-  line-height: 100%;
-  /*padding: 16px 8px 0 11px;*/
+
+.icon-close {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  zoom: 1;
+  margin-right: 10px;
 }
+
+.icon-close img {
+  width: 4.53333vw;
+  height: 4.53333vw;
+}
+
+.icon-left img {
+  width: 4.53333vw;
+  height: 4.53333vw;
+}
+
 .mobTxt {
-  height: 0.88rem;
+  display: flex;
+  height: 44px;
   background-color: #ffffff;
   position: relative;
-  margin-bottom: 0.3rem;
-  border-radius: 0.1rem;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
 .mobTxt.onePixel::after {
   border-width: 1px;
-  border-radius: 0.2rem;
+  border-radius: 10px;
+}
+
+.input-content {
+  margin-left: 5px;
+  font-size: 4.26667vw;
+  flex: 1;
 }
 
 .mobTxt input {
-  padding-left: 0.3rem;
-  width: 5.5rem;
-  font-size: 0.32rem;
-  line-height: 0.45rem;
+  width: 100%;
+  height: 11.73333vw;
+  line-height: 6vw;
   color: #555555;
-  float: left;
-  height: 0.88rem;
   position: relative;
   border-radius: 0;
   border: none;
@@ -178,7 +201,7 @@ export default {
 
 .codeInput {
   float: left;
-  height: 0.88rem;
+  height: 44px;
   width: 3.9rem;
 }
 
@@ -187,17 +210,17 @@ export default {
   border: none;
   width: 100%;
   height: 100%;
-  padding: 0 0.3rem;
-  font-size: 0.3rem;
+  padding: 0 15px;
+  font-size: 15px;
   background: transparent;
 }
 
 .codeBtn span {
   display: block;
   position: relative;
-  border-radius: 0.06rem;
-  font-size: 0.3rem;
-  line-height: 0.88rem;
+  border-radius: 3px;
+  font-size: 15px;
+  line-height: 44px;
   text-align: center;
   font-weight: bold;
   background: rgb(245, 130, 94);

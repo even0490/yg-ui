@@ -3,22 +3,25 @@
 
     <yg-form ref="formDate" :checkDefault="checkDefault">
 
-      <yg-input id="phone" icon="0102" class="v-check" :rule="rulePhone" type="password"
-                v-model="pwd"
-                inputType="pwd"
-                placeholder="这是测试">
-      </yg-input>
-      <yg-input id="code" class="v-check" :rule="ruleCode" type="text"
-                v-model="email"
-                inputType="email"
-                placeholder="这是email"></yg-input>
-      <yg-input id="passWord" class="v-check" :rule="rulePassWord" type="text"
+      <yg-input iconLeft="left" iconClose="close" id="phone" :rule="rulePhone" type="test"
                 v-model="mobile"
-                inputType="mobile"
-                placeholder="这是手机号"></yg-input>
+                placeholder="这是测试">
+        <img slot="iconLeft"  src="../assets/0100.png" alt="">
+        <img slot="iconClose"  src="../assets/0100.png" alt="">
+      </yg-input>
+      <yg-input id="code" iconLeft="left" iconClose="close"  :rule="ruleCode" type="password"
+                v-model="email"
+                placeholder="这是email">
+        <img slot="iconLeft"  src="../assets/0100.png" alt="">
+        <img slot="iconClose"  src="../assets/0100.png" alt=""></yg-input>
+      <yg-input iconLeft="left" iconClose="close" id="passWord" :rule="rulePassWord" type="text"
+                v-model="pwd"
+                placeholder="这是手机号">
+        <img slot="iconLeft"  src="../assets/0100.png" alt="">
+        <img slot="iconClose"  src="../assets/0100.png" alt=""></yg-input>
     </yg-form>
     <yg-button
-      @handleClick="checkForm"
+      @click="checkForm"
       bgColor="#f5825e"
       txtWeight="bold"
       txtColor="#fff"
@@ -49,17 +52,14 @@
     components: {},
     computed: {},
     methods: {
-      handleClick() {
-        console.log(this.errors);
-      },
       handleClick2() {
         this.$toast(Math.random() + "");
         this.$refs.btn2.cancel();
       },
       checkForm() {
-        // console.log(this.$refs.formDate.checkDate);
+        console.log(this.$refs.formDate.checkDate)
       }
-    }
+    },
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
