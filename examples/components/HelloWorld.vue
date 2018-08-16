@@ -24,14 +24,7 @@
                txtWeight="bold"
                txtColor="#f5825e"
                ref="btn2"></yg-button>
-    <yg-checkbox-group v-model="checkedCities"
-                       @change="handleCheckedCitiesChange">
-      <yg-checkbox v-for="city in cities"
-                   :label="city"
-                   :key="city">{{city}}</yg-checkbox>
-    </yg-checkbox-group>
-    <yg-checkbox v-model="checkVal"></yg-checkbox>
-
+    <yg-icon type="clear"></yg-icon>
   </div>
 </template>
 
@@ -44,10 +37,7 @@ export default {
       msg: "Welcome to Your Vue.js App",
       mobile: "",
       pwd: "",
-      email: "",
-      checkVal: true,
-      cities: ["上海", "北京", "广州", "深圳"],
-      checkedCities: ["上海", "北京"]
+      email: ""
     };
   },
   components: {},
@@ -57,7 +47,6 @@ export default {
     },
     logo() {
       console.log(logo);
-
       return logo;
     }
   },
@@ -84,9 +73,6 @@ export default {
     },
     handleClick2() {
       this.$alert("123");
-    },
-    handleCheckedCitiesChange(v) {
-      console.log(v, this.checkedCities);
     }
   }
 };

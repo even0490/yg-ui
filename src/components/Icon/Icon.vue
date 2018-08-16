@@ -109,6 +109,8 @@
 import right from "../../assets/right.png";
 import closeeye from "../../assets/closeeye.png";
 import openeye from "../../assets/openeye.png";
+import clear from "../../assets/clear.png";
+
 export default {
   name: "yg-icon",
   computed: {
@@ -123,7 +125,9 @@ export default {
         case "openeye":
           return openeye;
           break;
-
+        case "clear":
+          return clear;
+          break;
         default:
           return this.src;
           break;
