@@ -12,6 +12,92 @@
             fill="#bfbfbf"
             p-id="987"></path>
     </svg>
+    <svg v-else-if="type==='loading'"
+         viewBox="0 0 64 64"
+         :fill="color">
+      <g>
+        <circle r="5"
+                cx="24"
+                cy="0"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values="1;.9;.85;.7;.4;.3;.3;.3;1"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="16.970562748477143"
+                cy="16.97056274847714"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".3;1;.9;.85;.7;.4;.3;.3;.3"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="1.4695761589768238e-15"
+                cy="24"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".3;.3;1;.9;.85;.7;.4;.3;.3"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-16.97056274847714"
+                cy="16.970562748477143"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".3;.3;.3;1;.9;.85;.7;.4;.3"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-24"
+                cy="2.9391523179536475e-15"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".4;.3;.3;.3;1;.9;.85;.7;.4"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-16.970562748477143"
+                cy="-16.97056274847714"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".7;.4;.3;.3;.3;1;.9;.85;.7"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-4.408728476930472e-15"
+                cy="-24"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".85;.7;.4;.3;.3;.3;1;.9;.85"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="16.970562748477136"
+                cy="-16.970562748477143"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".9;.85;.7;.4;.3;.3;.3;1;.9"
+                   repeatCount="indefinite"></animate>
+        </circle>
+      </g>
+    </svg>
     <img v-else
          :src="imgSrc"
          alt="icon">
@@ -53,6 +139,10 @@ export default {
     },
     type: {
       type: String
+    },
+    color: {
+      type: String,
+      default: "#bfbfbf"
     },
     src: {
       default: "",
