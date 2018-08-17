@@ -5,6 +5,7 @@
       <div class="yg-notification-header">
         <yg-icon class="yg-notification-close"
                  v-show="closeIcon"
+                 type="close"
                  @click.native="btnHandler('cancel')"></yg-icon>
         <p class="yg-notification-title">{{title}}</p>
       </div>

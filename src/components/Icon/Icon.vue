@@ -1,6 +1,7 @@
 <template>
   <div class="yg-icon">
-    <svg viewBox="0 0 1024 1024"
+    <svg v-if="type==='close'"
+         viewBox="0 0 1024 1024"
          class="yg-icon-close"
          :width="width"
          :height="height">
@@ -11,13 +12,128 @@
             fill="#bfbfbf"
             p-id="987"></path>
     </svg>
+    <svg v-else-if="type==='loading'"
+         viewBox="0 0 64 64"
+         :fill="color">
+      <g>
+        <circle r="5"
+                cx="24"
+                cy="0"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values="1;.9;.85;.7;.4;.3;.3;.3;1"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="16.970562748477143"
+                cy="16.97056274847714"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".3;1;.9;.85;.7;.4;.3;.3;.3"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="1.4695761589768238e-15"
+                cy="24"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".3;.3;1;.9;.85;.7;.4;.3;.3"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-16.97056274847714"
+                cy="16.970562748477143"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".3;.3;.3;1;.9;.85;.7;.4;.3"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-24"
+                cy="2.9391523179536475e-15"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".4;.3;.3;.3;1;.9;.85;.7;.4"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-16.970562748477143"
+                cy="-16.97056274847714"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".7;.4;.3;.3;.3;1;.9;.85;.7"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="-4.408728476930472e-15"
+                cy="-24"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".85;.7;.4;.3;.3;.3;1;.9;.85"
+                   repeatCount="indefinite"></animate>
+        </circle>
+        <circle r="5"
+                cx="16.970562748477136"
+                cy="-16.970562748477143"
+                transform="translate(32,32)"
+                stroke-width="0">
+          <animate attributeName="fill-opacity"
+                   dur="750ms"
+                   values=".9;.85;.7;.4;.3;.3;.3;1;.9"
+                   repeatCount="indefinite"></animate>
+        </circle>
+      </g>
+    </svg>
+    <img v-else
+         :src="imgSrc"
+         alt="icon">
   </div>
 
 </template>
 
 <script>
+import right from "../../assets/right.png";
+import closeeye from "../../assets/closeeye.png";
+import openeye from "../../assets/openeye.png";
+import clear from "../../assets/clear.png";
+
 export default {
   name: "yg-icon",
+  computed: {
+    imgSrc() {
+      switch (this.type) {
+        case "right":
+          return right;
+          break;
+        case "closeeye":
+          return closeeye;
+          break;
+        case "openeye":
+          return openeye;
+          break;
+        case "clear":
+          return clear;
+          break;
+        default:
+          return this.src;
+          break;
+      }
+    }
+  },
   props: {
     width: {
       default: 30
@@ -26,7 +142,14 @@ export default {
       default: 30
     },
     type: {
-      default: "close",
+      type: String
+    },
+    color: {
+      type: String,
+      default: "#bfbfbf"
+    },
+    src: {
+      default: "",
       type: String
     }
   }
@@ -37,7 +160,8 @@ export default {
 .yg-icon {
   -webkit-tap-highlight-color: transparent;
 }
-.yg-icon svg {
+.yg-icon svg,
+.yg-icon img {
   display: block;
   width: 100%;
   height: 100%;

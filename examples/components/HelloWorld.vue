@@ -1,24 +1,25 @@
 <template>
   <div class="hello">
-
     <yg-form ref="formDate" :checkDefault="checkDefault">
 
       <yg-input iconLeft="left" iconClose="close" id="phone" :rule="rulePhone" type="test"
                 v-model="mobile"
                 placeholder="这是测试">
-        <img slot="iconLeft"  src="../assets/0100.png" alt="">
-        <img slot="iconClose"  src="../assets/0100.png" alt="">
+        <img slot="iconLeft" src="../assets/0100.png" alt="">
+        <img slot="iconClose" src="../assets/0100.png" alt="">
       </yg-input>
-      <yg-input id="code" iconLeft="left" iconClose="close"  :rule="ruleCode" type="password"
+      <yg-input id="code" iconLeft="left" iconClose="close" :rule="ruleCode" type="test"
                 v-model="email"
                 placeholder="这是email">
-        <img slot="iconLeft"  src="../assets/0100.png" alt="">
-        <img slot="iconClose"  src="../assets/0100.png" alt=""></yg-input>
-      <yg-input iconLeft="left" iconClose="close" id="passWord" :rule="rulePassWord" type="text"
+        <img slot="iconLeft" src="../assets/0100.png" alt="">
+        <img slot="iconClose" src="../assets/0100.png" alt=""></yg-input>
+      <yg-input iconLeft="left" iconClose="close" iconPwd="pwd" id="passWord" :rule="rulePassWord" type="password"
                 v-model="pwd"
-                placeholder="这是手机号">
-        <img slot="iconLeft"  src="../assets/0100.png" alt="">
-        <img slot="iconClose"  src="../assets/0100.png" alt=""></yg-input>
+                placeholder="这是密码">
+        <img slot="iconLeft" src="../assets/0100.png" alt="">
+        <img slot="iconClose" src="../assets/0100.png" alt="">
+        <yg-icon slot="iconPwd" type="openeye" class="openEye"></yg-icon>
+      </yg-input>
     </yg-form>
     <yg-button
       @click="checkForm"
@@ -26,11 +27,22 @@
       txtWeight="bold"
       txtColor="#fff"
       ref="btn"></yg-button>
+    <yg-button @click="handleClick"
+               bgColor="#f5825e"
+               txtWeight="bold"
+               txtColor="#fff"
+               ref="btn"></yg-button>
+    <yg-button @click="handleClick2"
+               btnTxt="取消"
+               bgColor="#fff"
+               txtHeight="1.2rem"
+               txtWeight="bold"
+               txtColor="#f5825e"
+               ref="btn2"></yg-button>
   </div>
 </template>
 
 <script>
-
   export default {
     name: "HelloWorld",
     data() {
@@ -52,6 +64,7 @@
     components: {},
     computed: {},
     methods: {
+      handleClick(){},
       handleClick2() {
         this.$toast(Math.random() + "");
         this.$refs.btn2.cancel();
@@ -86,8 +99,8 @@
   .main {
     padding: 0 0.4rem;
   }
-
-  .input-error {
-    background-color: red;
+  .openEye img{
+    width: 17px;
+    height: 17px;
   }
 </style>

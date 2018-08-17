@@ -7,7 +7,7 @@
     <div class="input-content">
       <input :id="id"
              :rule="rule"
-             :type="type"
+             :type="types"
              :name="name"
              :placeholder="placeholder"
              :disabled="disabled"
@@ -28,8 +28,13 @@
     </div>
 
 
-    <div :class="iconClose =='close'?'icon-close':''">
+    <div v-show="closeBtn" :class="iconClose =='close'?'icon-close':''">
       <slot name="iconClose">
+
+      </slot>
+    </div>
+    <div :class="iconPwd?'icon-pwd':''" @click="changeEye">
+      <slot name="iconPwd">
 
       </slot>
     </div>
@@ -43,13 +48,17 @@ export default {
     return {
       currentValue: this.value,
       textareaCalcStyle: {},
-      code: ""
+      code: "",
+      isOpenEye: false,
+      types: this.type,
+      closeBtn: false
     };
   },
   inject: ["checkForm"],
   props: {
     id: String,
     iconClose: String,
+    iconPwd: String,
     rule: {
       type: [String, Object]
     },
@@ -92,9 +101,19 @@ export default {
       default: true
     }
   },
-
   methods: {
+    changeEye() {
+      if (this.isOpenEye == true) {
+        this.types = "text";
+      } else {
+        this.types = "password";
+      }
+      this.isOpenEye = !this.isOpenEye;
+    },
     handleInput(event) {
+      event.target.value != ""
+        ? (this.closeBtn = true)
+        : (this.closeBtn = false);
       this.$emit("input", event.target.value);
     },
     handleIconClick(event) {
@@ -106,12 +125,19 @@ export default {
     }
   },
 
-  created() {},
-
   mounted() {}
 };
 </script>
 <style scope>
+.icon-pwd {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  zoom: 1;
+  margin-right: 10px;
+}
+
 .icon-left {
   display: flex;
   align-items: center;
