@@ -24,7 +24,7 @@
                txtWeight="bold"
                txtColor="#f5825e"
                ref="btn2"></yg-button>
-    <yg-icon type="clear"></yg-icon>
+    <router-link to="/slid">slid</router-link>
   </div>
 </template>
 

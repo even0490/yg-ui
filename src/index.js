@@ -7,7 +7,9 @@ import Icon from "./components/Icon";
 import Toast from "./components/Toast";
 import Loading from "./components/Loading";
 import CheckBox from "./components/CheckBox";
+import Transition from "./components/Transition";
 import CheckBoxGroup from "./components/CheckBoxGroup";
+
 import ToastPlugin from "./plugin/toast";
 import LoadingPlugin from "./plugin/loading";
 import DialogPlugin from "./plugin/dialog";
@@ -23,7 +25,8 @@ const components = {
   Toast,
   Loading,
   CheckBox,
-  CheckBoxGroup
+  CheckBoxGroup,
+  Transition
 };
 
 const plugin = {
