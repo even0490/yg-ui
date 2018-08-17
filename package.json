@@ -34,9 +34,6 @@
     "docs": "node build/docs.js",
     "build": "node build/build.js"
   },
-  "dependencies": {
-    "vuerify": "^0.4.0"
-  },
   "peerDependencies": {
     "vue": "^2.5.16"
   },
@@ -113,7 +110,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
+      "pre-push": "npm run unit"
     }
   }
 }

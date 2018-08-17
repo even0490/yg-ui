@@ -1,16 +1,13 @@
 <template>
   <div class="mobTxt onePixel">
-    <template v-if="type !== 'textarea'">
-      <!-- input 图标 -->
-      <slot name="icon">
-        <i class="input__icon"
-           :class="['icon-' + icon,onIconClick ? 'is-clickable' : '']"
-           v-if="icon"
-           @click="handleIconClick">
-        </i>
+    <div :class="iconLeft=='left'?'icon-left':''">
+      <slot name="iconLeft">
       </slot>
-      <input class="el-input__inner"
-             :type="type"
+    </div>
+    <div class="input-content">
+      <input :id="id"
+             :rule="rule"
+             :type="types"
              :name="name"
              :placeholder="placeholder"
              :disabled="disabled"
@@ -24,12 +21,23 @@
              :max="max"
              :step="step"
              :form="form"
-             :value="currentValue"
+             v-model="currentValue"
              ref="input"
-             @input="handleInput"
-             @focus="handleFocus"
-             @blur="handleBlur">
-    </template>
+             @blur="handleBlur"
+             @input="handleInput">
+    </div>
+
+
+    <div v-show="closeBtn" :class="iconClose =='close'?'icon-close':''">
+      <slot name="iconClose">
+
+      </slot>
+    </div>
+    <div :class="iconPwd?'icon-pwd':''" @click="changeEye">
+      <slot name="iconPwd">
+
+      </slot>
+    </div>
   </div>
 </template>
 <script>
@@ -39,12 +47,22 @@ export default {
   data() {
     return {
       currentValue: this.value,
-      textareaCalcStyle: {}
+      textareaCalcStyle: {},
+      code: "",
+      isOpenEye: false,
+      types: this.type,
+      closeBtn: false
     };
   },
-
+  inject: ["checkForm"],
   props: {
-    styleType: String,
+    id: String,
+    iconClose: String,
+    iconPwd: String,
+    rule: {
+      type: [String, Object]
+    },
+    iconLeft: String,
     inputType: String,
     value: [String, Number],
     placeholder: String,
@@ -58,6 +76,7 @@ export default {
       type: String,
       default: "text"
     },
+    maxCode: {},
     name: String,
     autosize: {
       type: [Boolean, Object],
@@ -80,54 +99,98 @@ export default {
     validateEvent: {
       type: Boolean,
       default: true
-    },
-    onIconClick: Function
+    }
   },
-
   methods: {
-    handleBlur(event) {
-      this.$emit("handleBlur", this.$refs.input.value);
-      // this[this.inputType]=this.$refs.input.value
-    },
-    handleFocus(event) {
-      this.$emit("handleFocus", event);
-      this[this.inputType] = this.$refs.input.value;
+    changeEye() {
+      if (this.isOpenEye == true) {
+        this.types = "text";
+      } else {
+        this.types = "password";
+      }
+      this.isOpenEye = !this.isOpenEye;
     },
     handleInput(event) {
+      event.target.value != ""
+        ? (this.closeBtn = true)
+        : (this.closeBtn = false);
       this.$emit("input", event.target.value);
     },
     handleIconClick(event) {
       this.$emit("click", event);
+    },
+    handleBlur(e) {
+      var vm = this;
+      this.checkForm(vm);
     }
   },
-
-  created() {},
 
   mounted() {}
 };
 </script>
 <style scope>
+.icon-pwd {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  zoom: 1;
+  margin-right: 10px;
+}
+
+.icon-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  zoom: 1;
+  margin-left: 10px;
+}
+
+.icon-close {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  zoom: 1;
+  margin-right: 10px;
+}
+
+.icon-close img {
+  width: 4.53333vw;
+  height: 4.53333vw;
+}
+
+.icon-left img {
+  width: 4.53333vw;
+  height: 4.53333vw;
+}
+
 .mobTxt {
-  height: 0.88rem;
+  display: flex;
+  height: 44px;
   background-color: #ffffff;
   position: relative;
-  margin-bottom: 0.3rem;
-  border-radius: 0.1rem;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 
 .mobTxt.onePixel::after {
   border-width: 1px;
-  border-radius: 0.2rem;
+  border-radius: 10px;
+}
+
+.input-content {
+  margin-left: 5px;
+  font-size: 4.26667vw;
+  flex: 1;
 }
 
 .mobTxt input {
-  padding-left: 0.3rem;
-  width: 5.5rem;
-  font-size: 0.32rem;
-  line-height: 0.45rem;
+  width: 100%;
+  height: 11.73333vw;
+  line-height: 6vw;
   color: #555555;
-  float: left;
-  height: 0.88rem;
   position: relative;
   border-radius: 0;
   border: none;
@@ -160,5 +223,47 @@ export default {
 
 .small {
   margin: 0 auto;
+}
+
+.codeInput {
+  float: left;
+  height: 44px;
+  width: 3.9rem;
+}
+
+.formItem input {
+  display: block;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  font-size: 15px;
+  background: transparent;
+}
+
+.codeBtn span {
+  display: block;
+  position: relative;
+  border-radius: 3px;
+  font-size: 15px;
+  line-height: 44px;
+  text-align: center;
+  font-weight: bold;
+  background: rgb(245, 130, 94);
+  border: none;
+  color: rgb(255, 255, 255);
+}
+
+.codeBtn {
+  width: 2.3rem;
+  float: right;
+}
+
+.formItem::after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 </style>

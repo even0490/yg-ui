@@ -3,6 +3,9 @@ import Notification from "./components/Notification";
 import Button from "./components/Button";
 import Dialog from "./components/Dialog";
 import Input from "./components/Input";
+
+import Form from "./components/Form";
+import directive from "./components/Check/index.js";
 import Icon from "./components/Icon";
 import Toast from "./components/Toast";
 import Loading from "./components/Loading";
@@ -23,6 +26,7 @@ const components = {
   Input,
   Icon,
   Toast,
+  Form,
   Loading,
   CheckBox,
   CheckBoxGroup,
