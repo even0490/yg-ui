@@ -3,14 +3,11 @@
   "components": {
     "Button": "./src/components/Button",
     "Input": "./src/components/Input",
-<<<<<<< HEAD
     "Form": "./src/components/Form",
-    "Toast": "./src/components/Toast/index.js",
-    "vuerify": "./src/components/vuerify/index.js"
-=======
     "Dialog": "./src/components/Dialog",
     "Loading": "./src/components/Loading",
     "Notification": "./src/components/Notification",
+    "Picker": "./src/components/Picker",
     "Toast": "./src/components/Toast"
   },
   "plugin": {
@@ -19,6 +16,5 @@
     "dialog": "./src/plugin/dialog",
     "loading": "./src/plugin/loading",
     "toast": "./src/plugin/toast"
->>>>>>> fd2fa2d963e2edbea5252f2279d73a73e18af6c0
   }
 }

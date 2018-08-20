@@ -88,7 +88,7 @@
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
-    "vue": "2.5.16",
+    "vue": "2.5.17",
     "vue-jest": "^1.0.2",
     "vue-loader": "^13.3.0",
     "vue-router": "^3.0.1",
@@ -97,7 +97,8 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "better-scroll": "^1.12.6"
   },
   "engines": {
     "node": ">= 6.0.0",
@@ -112,5 +113,8 @@
       "pre-commit": "npm run lint",
       "pre-push": "npm run unit"
     }
+  },
+  "dependencies": {
+    "better-scroll": "^1.12.6"
   }
 }

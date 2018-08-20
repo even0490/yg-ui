@@ -16,6 +16,7 @@ import LoadingPlugin from "./plugin/loading";
 import DialogPlugin from "./plugin/dialog";
 import AlertPlugin from "./plugin/alert";
 import ConfirmPlugin from "./plugin/confirm";
+import Picker from "./components/Picker";
 
 const components = {
   Notification,
@@ -27,7 +28,8 @@ const components = {
   Form,
   Loading,
   CheckBox,
-  CheckBoxGroup
+  CheckBoxGroup,
+  Picker
 };
 
 const plugin = {
