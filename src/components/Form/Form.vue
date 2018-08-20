@@ -1,5 +1,5 @@
 <template>
-  <div class="formCheck" :checkDefault="checkDefault">
+  <div class="formCheck">
     <slot></slot>
   </div>
 </template>
@@ -9,34 +9,52 @@ export default {
   name: "yg-form",
   data: function() {
     return {
-      checkDate: {}
+      inputsObj: {}
     };
   },
   props: {
-    checkDefault: {
-      type: [Object, Array],
+    rule: {
+      type: Object,
       default: function() {
-        return {}; //或者是return {}
+        return {};
       }
     }
   },
   provide: function() {
     return {
-      checkForm: this.checkForm
+      inputRegister: this.inputRegister
     };
   },
 
-  mounted: function() {
-    this.checkDate = this.checkDefault;
-  },
+  mounted: function() {},
   methods: {
-    checkForm: function(el) {
-      let reg = el.rule.regex;
-      if (!reg.test(el.$refs.input.value)) {
-        this.checkDate[el.id] = el.rule.regTxt;
-      } else {
-        delete this.checkDate[el.id];
-      }
+    inputRegister(vm, key) {
+      key && (this.inputsObj[key] = vm);
+    },
+    checkForm: function() {
+      let checkResult;
+      Object.keys(this.inputsObj).forEach(key => {
+        let vm = this.inputsObj[key];
+        let rules = this.rule[key];
+        if (!rules) {
+          return;
+        }
+        rules.find(rule => {
+          if (!rule.regex.test(vm.value)) {
+            checkResult || (checkResult = {});
+            checkResult[key] = rule.regTxt;
+            return true;
+          }
+        });
+      });
+
+      return new Promise((resolve, reject) => {
+        if (checkResult === undefined) {
+          resolve();
+        } else {
+          reject(checkResult);
+        }
+      });
     }
   }
 };

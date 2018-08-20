@@ -1,52 +1,28 @@
 <template>
   <div class="hello">
     <yg-form ref="formDate"
-             :checkDefault="checkDefault">
-
-      <yg-input iconLeft="left"
-                iconClose="close"
-                id="phone"
-                :rule="rulePhone"
+             :rule="rule">
+      <yg-input id="phone"
+                prop="phone"
                 type="test"
+                format="bankCard"
                 v-model="mobile"
                 placeholder="这是测试">
-        <img slot="iconLeft"
-             src="../assets/0100.png"
-             alt="">
-        <img slot="iconClose"
-             src="../assets/0100.png"
-             alt="">
       </yg-input>
       <yg-input id="code"
-                iconLeft="left"
-                iconClose="close"
-                :rule="ruleCode"
                 type="test"
+                prop="code"
+                :closeBtn="true"
                 v-model="email"
                 placeholder="这是email">
-        <img slot="iconLeft"
-             src="../assets/0100.png"
-             alt="">
-        <img slot="iconClose"
-             src="../assets/0100.png"
-             alt=""></yg-input>
-      <yg-input iconLeft="left"
-                iconClose="close"
-                iconPwd="pwd"
+      </yg-input>
+      <yg-input :iconPwd="true"
+                :closeBtn="true"
+                prop="passWord"
                 id="passWord"
-                :rule="rulePassWord"
                 type="password"
                 v-model="pwd"
                 placeholder="这是密码">
-        <img slot="iconLeft"
-             src="../assets/0100.png"
-             alt="">
-        <img slot="iconClose"
-             src="../assets/0100.png"
-             alt="">
-        <yg-icon slot="iconPwd"
-                 type="openeye"
-                 class="openEye"></yg-icon>
       </yg-input>
     </yg-form>
     <yg-button @click="checkForm"
@@ -76,20 +52,18 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      mobile: "",
+      mobile: "12341234",
       pwd: "",
       email: "",
-      checkDefault: {
-        phone: "手机号不能为空",
-        passWord: "密码不能为空",
-        code: "验证码不能为空"
-      },
-      rulePhone: { required: true, regex: /^[abcde]*$/, regTxt: "名字有误" },
-      ruleCode: { required: true, regex: /^[0-9]$/, regTxt: "只能是数字" },
-      rulePassWord: {
-        required: true,
-        regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
-        regTxt: "密码有误"
+      rule: {
+        phone: [{ regex: /^[abcde]+$/, regTxt: "名字有误" }],
+        code: [{ regex: /^[0-9]$/, regTxt: "只能是数字" }],
+        passWord: [
+          {
+            regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
+            regTxt: "密码有误"
+          }
+        ]
       }
     };
   },
@@ -102,7 +76,14 @@ export default {
       this.$refs.btn2.cancel();
     },
     checkForm() {
-      console.log(this.$refs.formDate.checkDate);
+      this.$refs.formDate
+        .checkForm()
+        .then(data => {
+          console.log("success");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
