@@ -1,9 +1,7 @@
 <template>
-  <div class="mobTxt onePixel">
-    <div :class="iconLeft=='left'?'icon-left':''">
-      <slot name="iconLeft">
-      </slot>
-    </div>
+  <div class="yg-input"
+       :style="styles">
+    <slot name="iconLeft"></slot>
     <div class="input-content">
       <input :id="id"
              :rule="rule"
@@ -16,54 +14,71 @@
              :minlength="minlength"
              :autocomplete="autoComplete"
              :autofocus="autofocus"
-             :inputType="inputType"
-             :min="min"
-             :max="max"
-             :step="step"
              :form="form"
-             v-model="currentValue"
              ref="input"
+             v-model="currentValue"
              @blur="handleBlur"
              @input="handleInput">
     </div>
-
-
-    <div v-show="closeBtn" :class="iconClose =='close'?'icon-close':''">
-      <slot name="iconClose">
-
-      </slot>
+    <transition name="yg-fade">
+      <div v-show="closeBtn&&value"
+           @click="clearVal"
+           class="icon-close">
+        <img src="../../assets/clear.png" />
+      </div>
+    </transition>
+    <div class="icon-pwd"
+         v-show="iconPwd"
+         @click="changeEye">
+      <img :src="types==='password'?closeeye:openeye" />
     </div>
-    <div :class="iconPwd?'icon-pwd':''" @click="changeEye">
-      <slot name="iconPwd">
-
-      </slot>
-    </div>
+    <slot name="iconRight"></slot>
   </div>
 </template>
 <script>
+import closeeye from "../../assets/closeeye.png";
+import openeye from "../../assets/openeye.png";
+import config from "../../config.js";
 export default {
   name: "yg-input",
-
   data() {
     return {
       currentValue: this.value,
       textareaCalcStyle: {},
       code: "",
-      isOpenEye: false,
       types: this.type,
-      closeBtn: false
+      closeeye,
+      openeye
     };
   },
-  inject: ["checkForm"],
+  computed: {
+    styles() {
+      return {
+        background: config.Input.background,
+        borderColor: config.Input.borderColor
+      };
+    }
+  },
+  inject: ["inputRegister"],
   props: {
     id: String,
-    iconClose: String,
-    iconPwd: String,
+    prop: {
+      type: String,
+      default: function() {
+        return this.id;
+      }
+    },
+    closeBtn: {
+      type: Boolean,
+      default: false
+    },
+    iconPwd: {
+      type: Boolean,
+      default: false
+    },
     rule: {
       type: [String, Object]
     },
-    iconLeft: String,
-    inputType: String,
     value: [String, Number],
     placeholder: String,
     size: String,
@@ -76,16 +91,7 @@ export default {
       type: String,
       default: "text"
     },
-    maxCode: {},
     name: String,
-    autosize: {
-      type: [Boolean, Object],
-      default: false
-    },
-    rows: {
-      type: Number,
-      default: 2
-    },
     autoComplete: {
       type: String,
       default: "off"
@@ -93,42 +99,64 @@ export default {
     form: String,
     maxlength: Number,
     minlength: Number,
-    max: {},
-    min: {},
-    step: {},
-    validateEvent: {
-      type: Boolean,
-      default: true
+    format: {
+      type: String
     }
   },
   methods: {
     changeEye() {
-      if (this.isOpenEye == true) {
+      if (this.types == "password") {
         this.types = "text";
       } else {
         this.types = "password";
       }
-      this.isOpenEye = !this.isOpenEye;
+    },
+    clearVal() {
+      this.currentValue = "";
+      this.$emit("input", "");
     },
     handleInput(event) {
-      event.target.value != ""
-        ? (this.closeBtn = true)
-        : (this.closeBtn = false);
-      this.$emit("input", event.target.value);
+      let pos = this.$refs.input.selectionEnd;
+      let originalVal = "";
+      let inputVal = event.target ? event.target.value : event;
+
+      switch (this.format) {
+        case "bankCard":
+          originalVal = inputVal.replace(/\s/g, "");
+          this.currentValue = this.bankCardFilter(originalVal);
+          break;
+
+        default:
+          originalVal = this.currentValue = inputVal;
+          break;
+      }
+      if (this.currentValue.length > inputVal.length) {
+        pos += this.currentValue.length - inputVal.length;
+      }
+      this.$nextTick(() => {
+        this.$refs.input.setSelectionRange(pos, pos);
+      });
+      this.$emit("input", originalVal);
     },
     handleIconClick(event) {
       this.$emit("click", event);
     },
     handleBlur(e) {
-      var vm = this;
-      this.checkForm(vm);
+      this.$emit("blur", e);
+    },
+    bankCardFilter(value) {
+      if (!value) return "";
+      return value.replace(/(\d{4})(?!\s)(?!$)/g, "$1 ");
     }
   },
-
-  mounted() {}
+  mounted() {
+    this.inputRegister(this, this.prop);
+    this.handleInput(this.value);
+  }
 };
 </script>
-<style scope>
+<style lang="scss" scope>
+@import "../../style/border.scss";
 .icon-pwd {
   display: flex;
   align-items: center;
@@ -137,14 +165,8 @@ export default {
   zoom: 1;
   margin-right: 10px;
 }
-
-.icon-left {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  position: relative;
-  zoom: 1;
-  margin-left: 10px;
+.icon-pwd img {
+  width: 18px;
 }
 
 .icon-close {
@@ -157,36 +179,31 @@ export default {
 }
 
 .icon-close img {
-  width: 4.53333vw;
-  height: 4.53333vw;
+  width: 18px;
+  height: 18px;
 }
 
-.icon-left img {
-  width: 4.53333vw;
-  height: 4.53333vw;
-}
-
-.mobTxt {
+.yg-input {
   display: flex;
   height: 44px;
   background-color: #ffffff;
   position: relative;
   margin-bottom: 15px;
   border-radius: 5px;
+  @include border(1px, inherit, solid, 4px);
 }
 
-.mobTxt.onePixel::after {
-  border-width: 1px;
-  border-radius: 10px;
+.yg-input img {
+  width: 18px;
 }
 
 .input-content {
-  margin-left: 5px;
+  margin-left: 10px;
   font-size: 4.26667vw;
   flex: 1;
 }
 
-.mobTxt input {
+.yg-input input {
   width: 100%;
   height: 11.73333vw;
   line-height: 6vw;
@@ -198,27 +215,6 @@ export default {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
   outline: none;
   -webkit-appearance: none;
-}
-
-.onePixel::after {
-  content: "";
-  width: 200%;
-  height: 200%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-color: #dedede;
-  border-style: solid;
-  transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  -webkit-transform-origin: 0 0;
-  transform: scale(0.5);
-  -ms-transform: scale(0.5);
-  -moz-transform: scale(0.5);
-  -webkit-transform: scale(0.5);
-  -o-transform: scale(0.5);
-  box-sizing: border-box;
-  pointer-events: none;
 }
 
 .small {

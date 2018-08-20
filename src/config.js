@@ -8,8 +8,8 @@ let config = {
     cancelText: "#999999"
   },
   Input: {
-    defaultBackground: "red",
-    defaultBorder: "yellow"
+    background: "white",
+    borderColor: "#e8e8e8"
   },
   CheckBox: {
     borderColor: "#c3ab69",

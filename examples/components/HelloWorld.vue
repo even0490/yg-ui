@@ -1,32 +1,35 @@
 <template>
   <div class="hello">
-    <yg-form ref="formDate" :checkDefault="checkDefault">
-
-      <yg-input iconLeft="left" iconClose="close" id="phone" :rule="rulePhone" type="test"
+    <yg-form ref="formDate"
+             :rule="rule">
+      <yg-input id="phone"
+                prop="phone"
+                type="test"
+                format="bankCard"
                 v-model="mobile"
                 placeholder="这是测试">
-        <img slot="iconLeft" src="../assets/0100.png" alt="">
-        <img slot="iconClose" src="../assets/0100.png" alt="">
       </yg-input>
-      <yg-input id="code" iconLeft="left" iconClose="close" :rule="ruleCode" type="test"
+      <yg-input id="code"
+                type="test"
+                prop="code"
+                :closeBtn="true"
                 v-model="email"
                 placeholder="这是email">
-        <img slot="iconLeft" src="../assets/0100.png" alt="">
-        <img slot="iconClose" src="../assets/0100.png" alt=""></yg-input>
-      <yg-input iconLeft="left" iconClose="close" iconPwd="pwd" id="passWord" :rule="rulePassWord" type="password"
+      </yg-input>
+      <yg-input :iconPwd="true"
+                :closeBtn="true"
+                prop="passWord"
+                id="passWord"
+                type="password"
                 v-model="pwd"
                 placeholder="这是密码">
-        <img slot="iconLeft" src="../assets/0100.png" alt="">
-        <img slot="iconClose" src="../assets/0100.png" alt="">
-        <yg-icon slot="iconPwd" type="openeye" class="openEye"></yg-icon>
       </yg-input>
     </yg-form>
-    <yg-button
-      @click="checkForm"
-      bgColor="#f5825e"
-      txtWeight="bold"
-      txtColor="#fff"
-      ref="btn"></yg-button>
+    <yg-button @click="checkForm"
+               bgColor="#f5825e"
+               txtWeight="bold"
+               txtColor="#fff"
+               ref="btn"></yg-button>
     <yg-button @click="handleClick"
                bgColor="#f5825e"
                txtWeight="bold"
@@ -47,6 +50,7 @@
 
 
 
+    <router-link to="/slid">slid</router-link>
   </div>
 </template>
 
@@ -139,8 +143,8 @@
       };
     },
     mounted() {
-      this.$refs.picker0.setData(data1)
-      this.$refs.picker0.setSelectedIndex(0)
+      this.$refs.picker0.setData([data1])
+      this.$refs.picker0.setSelectedIndex([0])
     },
     methods: {
 
@@ -176,37 +180,46 @@
       toShow() {
         this.show = true
       }
-
-
     },
+    checkForm() {
+      this.$refs.formDate
+        .checkForm()
+        .then(data => {
+          console.log("success");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
+
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h1,
-  h2 {
-    font-weight: normal;
-  }
+h1,
+h2 {
+  font-weight: normal;
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
 
-  a {
-    color: #42b983;
-  }
+a {
+  color: #42b983;
+}
 
-  .main {
-    padding: 0 0.4rem;
-  }
-  .openEye img{
-    width: 17px;
-    height: 17px;
-  }
+.main {
+  padding: 0 0.4rem;
+}
+.openEye img {
+  width: 17px;
+  height: 17px;
+}
 </style>

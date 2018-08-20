@@ -4,11 +4,11 @@
     "Button": "./src/components/Button",
     "Input": "./src/components/Input",
     "Form": "./src/components/Form",
+    "Picker": "./src/components/Picker",
+    "Toast": "./src/components/Toast",
     "Dialog": "./src/components/Dialog",
     "Loading": "./src/components/Loading",
-    "Notification": "./src/components/Notification",
-    "Picker": "./src/components/Picker",
-    "Toast": "./src/components/Toast"
+    "Notification": "./src/components/Notification"
   },
   "plugin": {
     "alert": "./src/plugin/alert",

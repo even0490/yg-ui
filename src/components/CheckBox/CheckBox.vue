@@ -3,7 +3,7 @@
     <span class="yg-checkbox-box">
       <span class="yg-checkbox-innerbox"
             :style="boxStyle">
-        <transition name="fade">
+        <transition name="yg-fade">
           <svg t="1534386909319"
                v-show="checked"
                class="yg-checkbox-check"
