@@ -1,8 +1,9 @@
 <template>
   <div class="hello">
     <yg-form ref="formDate"
-             :rule="rule">
+             >
       <yg-input id="phone"
+                class="we"
                 prop="phone"
                 type="test"
                 format="bankCard"
@@ -45,7 +46,7 @@
 
     <div class="select" @click="showPicker(0)" ref="select0">{{ selectedText[0] }}</div>
     <yg-picker @select="handleSelect(0,arguments)" :selected-index="selectedIndex[0]"
-            ref="picker0" title="请选择" cancelTxt="取消"
+            ref="picker0" title="请选择银行卡" cancelTxt="取消"
             confirmTxt="确认"></yg-picker>
 
 
