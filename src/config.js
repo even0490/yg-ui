@@ -16,6 +16,12 @@ let config = {
     unCheckBg: "white",
     checkBg: "white",
     checkColor: "#c3ab69"
+  },
+  Confirm: {
+    color: "#AD935D"
+  },
+  Cancel: {
+    color: "#AD935D"
   }
 };
 

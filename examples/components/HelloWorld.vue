@@ -1,5 +1,57 @@
 <template>
   <div class="hello">
+    <yg-form ref="formDate">
+      <yg-input id="phone"
+                class="we"
+                prop="phone"
+                type="test"
+                format="bankCard"
+                v-model="mobile"
+                placeholder="这是测试">
+      </yg-input>
+      <yg-input id="code"
+                type="test"
+                prop="code"
+                :closeBtn="true"
+                v-model="email"
+                placeholder="这是email">
+      </yg-input>
+      <yg-input :iconPwd="true"
+                :closeBtn="true"
+                prop="passWord"
+                id="passWord"
+                type="password"
+                v-model="pwd"
+                placeholder="这是密码">
+      </yg-input>
+    </yg-form>
+    <yg-button @click="checkForm"
+               bgColor="#f5825e"
+               txtWeight="bold"
+               txtColor="#fff"
+               ref="btn"></yg-button>
+    <yg-button @click="handleClick"
+               bgColor="#f5825e"
+               txtWeight="bold"
+               txtColor="#fff"
+               ref="btn"></yg-button>
+    <yg-button @click="handleClick2"
+               btnTxt="取消"
+               bgColor="#fff"
+               txtHeight="1.2rem"
+               txtWeight="bold"
+               txtColor="#f5825e"
+               ref="btn2"></yg-button>
+
+    <div class="select"
+         @click="showPicker(0)"
+         ref="select0">{{ selectedText[0] }}</div>
+    <yg-picker @select="handleSelect(0,arguments)"
+               :selected-index="selectedIndex[0]"
+               ref="picker0"
+               title="请选择银行卡"
+               cancelTxt="取消"
+               confirmTxt="确认"></yg-picker>
 
     <div class="select"
          @click="showPicker(0)"

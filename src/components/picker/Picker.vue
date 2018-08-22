@@ -5,8 +5,8 @@
       <transition name="picker-move">
         <div class="picker-panel" @click.stop>
           <div class="picker-choose border-bottom-1px">
-            <span class="cancel" @click="cancel">{{cancelTxt}}</span>
-            <span class="confirm" @click="confirm">{{confirmTxt}}</span>
+            <span :style="Cancel" class="cancel" @click="cancel">{{cancelTxt}}</span>
+            <span :style="Confirm" class="confirm" @click="confirm">{{confirmTxt}}</span>
             <h1 class="picker-title">{{title}}</h1>
           </div>
           <div class="picker-content">
@@ -29,6 +29,7 @@
 
 <script>
 import BScroll from "better-scroll";
+import config from "../../config.js";
 const STATE_HIDE = 0;
 const STATE_SHOW = 1;
 const COMPONENT_NAME = "picker";
@@ -38,6 +39,18 @@ const EVENT_CANCEL = "cancel";
 const EVENT_CHANGE = "change";
 export default {
   name: "yg-picker",
+  computed: {
+    Confirm() {
+      return {
+        color: config.Confirm.color
+      };
+    },
+    Cancel() {
+      return {
+        color: config.Cancel.color
+      };
+    }
+  },
   props: {
     data: {
       type: Array,
@@ -237,8 +250,9 @@ export default {
 };
 </script>
 
-<style scoped>
-.border-top-1px,
+<style lang="scss" scoped>
+@import "../../style/border.scss";
+/*.border-top-1px,
 .border-bottom-1px {
   position: relative;
 }
@@ -269,6 +283,12 @@ export default {
   bottom: 0;
   width: 100%;
   transform-origin: 0 bottom;
+}*/
+.border-top-1px {
+  @include border(1px 0 0 0, #e8e8e8);
+}
+.border-bottom-1px {
+  @include border(0 0 1px 0, #e8e8e8);
 }
 .picker {
   position: fixed;
@@ -295,7 +315,7 @@ export default {
   z-index: 600;
   bottom: 0;
   width: 100%;
-  height: 273px;
+  height: 245px;
   background: #fff;
 }
 .picker-move-enter,
@@ -308,32 +328,32 @@ export default {
 }
 .picker-choose {
   position: relative;
-  height: 60px;
+  height: 40px;
+  line-height: 40px;
   color: #999;
 }
 .picker-title {
   margin: 0;
-  line-height: 60px;
   font-weight: normal;
   text-align: center;
-  font-size: 18px;
+  font-size: 15px;
   color: #333;
 }
 .confirm,
 .cancel {
   position: absolute;
-  top: 6px;
-  padding: 16px;
   font-size: 14px;
 }
 .confirm {
   right: 0;
+  padding-right: 10px;
   color: #007bff;
 }
 .confirm:active {
   color: #5aaaff;
 }
 .cancel {
+  padding-left: 10px;
   left: 0;
 }
 .cancel:active {
@@ -354,6 +374,11 @@ export default {
 .mask-top {
   position: absolute;
   top: 0;
+  right: 0;
+  left: 0;
+  width: 50%;
+  margin: 0 auto;
+  /* padding: 0 43px; */
   background: linear-gradient(
     to top,
     rgba(255, 255, 255, 0.4),
@@ -362,6 +387,10 @@ export default {
 }
 .mask-bottom {
   position: absolute;
+  right: 0;
+  left: 0;
+  width: 50%;
+  margin: 0 auto;
   bottom: 1px;
   background: linear-gradient(
     to bottom,
@@ -383,7 +412,7 @@ export default {
   width: 1%;
   height: 173px;
   overflow: hidden;
-  font-size: 20px;
+  font-size: 15px;
 }
 .wheel-scroll {
   padding: 0;
