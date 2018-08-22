@@ -1,6 +1,8 @@
 <template>
   <div class="slid">
     <yg-carousel :items="items"
+                 :autoPlay="true"
+                 :interval="60"
                  @click.native="clickHanadler"></yg-carousel>
     <router-link to="/">back</router-link>
   </div>

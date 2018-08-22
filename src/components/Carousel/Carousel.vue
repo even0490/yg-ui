@@ -46,7 +46,7 @@ export default {
     },
     loop: {
       type: Boolean,
-      default: true
+      default: false
     },
     threshold: {
       type: Number,
@@ -62,11 +62,11 @@ export default {
     },
     showDot: {
       type: Boolean,
-      default: true
+      default: false
     },
     autoPlay: {
       type: Boolean,
-      default: true
+      default: false
     },
     interval: {
       type: Number,
@@ -121,7 +121,11 @@ export default {
     play() {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.slide.next();
+        if (!this.loop && this.currentPageIndex === this.items.length - 1) {
+          this.slide.goToPage(0);
+        } else {
+          this.slide.next();
+        }
       }, this.interval);
     },
     update() {
@@ -150,7 +154,7 @@ export default {
     }
   },
   mounted() {
-    this.initSlide();
+    this.update();
   },
   beforeDestroy() {
     this.slide.disable();
