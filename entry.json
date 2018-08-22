@@ -8,7 +8,12 @@
     "Toast": "./src/components/Toast",
     "Dialog": "./src/components/Dialog",
     "Loading": "./src/components/Loading",
-    "Notification": "./src/components/Notification"
+    "Notification": "./src/components/Notification",
+    "Carousel": "./src/components/Carousel",
+    "Icon": "./src/components/Icon",
+    "CheckBox": "./src/components/CheckBox",
+    "CheckBoxGroup": "./src/components/CheckBoxGroup",
+    "Popup": "./src/components/Popup"
   },
   "plugin": {
     "alert": "./src/plugin/alert",
