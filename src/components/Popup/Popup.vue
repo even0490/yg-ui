@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
+@import "../../../static/transition.css";
 .yg-popup-mask {
   position: fixed;
   z-index: 999;

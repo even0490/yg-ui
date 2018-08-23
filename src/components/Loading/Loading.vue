@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
+@import "../../../static/transition.css";
 .yg-loading-mask {
   position: fixed;
   top: 0;

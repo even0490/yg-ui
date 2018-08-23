@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 .yg-notification-header {
   @include border(0 0 1px);
   text-align: center;

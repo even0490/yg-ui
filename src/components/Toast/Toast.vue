@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
+@import "../../../static/transition.css";
 .yg-toast-box {
   position: fixed;
   top: 50%;

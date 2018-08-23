@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
+@import "../../../static/transition.css";
 .yg-transition {
   position: relative;
   width: 100%;

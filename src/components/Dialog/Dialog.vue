@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
+@import "../../../static/transition.css";
 .yg-dialog-mask {
   position: fixed;
   top: 0;

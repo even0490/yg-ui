@@ -86,7 +86,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 .yg-button {
   border: none;
   color: #fff;

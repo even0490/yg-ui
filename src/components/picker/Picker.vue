@@ -251,7 +251,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 /*.border-top-1px,
 .border-bottom-1px {
   position: relative;

@@ -80,7 +80,7 @@ module.exports = {
     umdNamedDefine: true,
     // Paths
     assetsRoot: path.resolve(__dirname, "../dist"),
-    assetsSubDirectory: "/",
+    assetsSubDirectory: "static",
     assetsPublicPath: "/",
 
     /**

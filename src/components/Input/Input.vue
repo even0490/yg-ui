@@ -156,7 +156,7 @@ export default {
 };
 </script>
 <style lang="scss" scope>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 .icon-pwd {
   display: flex;
   align-items: center;
