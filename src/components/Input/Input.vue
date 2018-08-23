@@ -188,7 +188,6 @@ export default {
   height: 44px;
   background-color: #ffffff;
   position: relative;
-  margin-bottom: 15px;
   border-radius: 5px;
   @include border(1px, inherit, solid, 4px);
 }

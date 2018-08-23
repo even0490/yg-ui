@@ -1,5 +1,4 @@
 import "../static/reset.css";
-import "../static/border.scss";
 import "../static/transition.css";
 import Notification from "./components/Notification";
 import Button from "./components/Button";

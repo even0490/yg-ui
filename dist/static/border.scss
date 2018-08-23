@@ -1,16 +1,5 @@
-$font-family: #{"Helvetica Neue", Helvetica, STHeiTi, sans-serif};
-// lin-height
-$line-height: 1.5;
 // 默认边框色
 $border-color: #e8e8e8;
-// 默认背景颜色
-$bgcolor: #faf3ee;
-// 默认文本颜色
-$color: #333;
-// 默认链接色
-$link-color: #ad935d;
-// 默认按钮颜色
-$btcolor: #ad935d;
 
 $media-types: (
   /* 视网膜屏定义，这里不做非常细节的界定，比如完全一致的整数倍*/
@@ -74,6 +63,7 @@ $media-types: (
     $border-width: 0;
   }
   border-radius: $radius;
+  border-color: $border-color;
   &::after {
     // 用以解决边框layer遮盖内容
     pointer-events: none;
@@ -83,7 +73,7 @@ $media-types: (
     left: 0;
     overflow: hidden;
     content: "\0020";
-    border-color: $border-color;
+    border-color: inherit;
     border-style: $border-style;
     border-width: $border-width;
     transform-origin: 0 0;
