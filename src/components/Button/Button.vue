@@ -112,7 +112,6 @@ export default {
   text-align: center;
   border: none;
   border-radius: 4px;
-  margin: 15px auto 0;
   outline: none;
 }
 .yg-button .yg-button-cancel {
