@@ -2,6 +2,7 @@
   <div class="yg-button"
        :class="className">
     <button @click="handleClick"
+            type="button"
             :class="btnClass"
             :disabled="disabled">
       <slot>submit</slot>
