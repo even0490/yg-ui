@@ -204,7 +204,6 @@ export default {
 .yg-input input {
   width: 100%;
   height: 100%;
-  color: #555555;
   position: relative;
   border-radius: 0;
   border: none;
