@@ -48,7 +48,6 @@ export default {
 .yg-slide-in-leave-active {
   position: absolute;
   width: 100%;
-  background: white;
 }
 
 .yg-slide-in-enter-active {
@@ -96,7 +95,6 @@ export default {
 .yg-slide-out-leave-active {
   position: absolute;
   width: 100%;
-  background: white;
 }
 
 .yg-slide-out-leave-active {
