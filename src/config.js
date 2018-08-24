@@ -2,10 +2,12 @@ let config = {
   Button: {
     defaultBackground: "#c3ab69",
     defaultText: "white",
+    defaultActiveBg: "#af9b59",
     disabledBackground: "#cccccc",
     disabledText: "white",
     cancelBackground: "white",
-    cancelText: "#999999"
+    cancelText: "#999999",
+    cancelActiveBg: "#ececec"
   },
   Input: {
     background: "white",

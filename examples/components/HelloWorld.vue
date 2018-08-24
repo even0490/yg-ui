@@ -34,8 +34,10 @@
                bgColor="#f5825e"
                txtWeight="bold"
                txtColor="#fff"
+               type="cancel"
                ref="btn"></yg-button>
     <yg-button @click="handleClick2"
+               :disabled="true"
                btnTxt="取消"
                bgColor="#fff"
                txtHeight="1.2rem"

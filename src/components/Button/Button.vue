@@ -3,10 +3,7 @@
        :class="className">
     <button @click="handleClick"
             :class="btnClass"
-            :disabled="disabled"
-            :style="{ background:bgColor,
-                      color: txtColor,
-                      fontWeight: txtWeight }">
+            :disabled="disabled">
       <slot>submit</slot>
     </button>
   </div>

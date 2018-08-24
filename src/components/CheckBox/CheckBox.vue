@@ -94,7 +94,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../static/border.scss";
-@import "../../../static/transition.css";
 .yg-checkbox {
   display: block;
   white-space: nowrap;

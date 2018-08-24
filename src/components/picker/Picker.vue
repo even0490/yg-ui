@@ -1,21 +1,34 @@
 <template>
   <!--<div class="select" @click="showPicker(0)" ref="select0">{{ selectedText[0] }}</div>-->
   <transition name="picker-fade">
-    <div class="picker" v-show="state===1"  @touchmove.prevent @click="cancel">
+    <div class="picker"
+         v-show="state===1"
+         @touchmove.prevent
+         @click="cancel">
       <transition name="picker-move">
-        <div class="picker-panel" @click.stop>
+        <div class="picker-panel"
+             @click.stop>
           <div class="picker-choose border-bottom-1px">
-            <span :style="Cancel" class="cancel" @click="cancel">{{cancelTxt}}</span>
-            <span :style="Confirm" class="confirm" @click="confirm">{{confirmTxt}}</span>
+            <span :style="Cancel"
+                  class="cancel"
+                  @click="cancel">{{cancelTxt}}</span>
+            <span :style="Confirm"
+                  class="confirm"
+                  @click="confirm">{{confirmTxt}}</span>
             <h1 class="picker-title">{{title}}</h1>
           </div>
           <div class="picker-content">
             <div class="mask-top border-bottom-1px"></div>
             <div class="mask-bottom border-top-1px"></div>
-            <div class="wheel-wrapper" ref="wheelWrapper">
-              <div class="wheel" v-for="(data,index) in pickerData" :key="index">
+            <div class="wheel-wrapper"
+                 ref="wheelWrapper">
+              <div class="wheel"
+                   v-for="(data,index) in pickerData"
+                   :key="index">
                 <ul class="wheel-scroll">
-                  <li v-for="item in data" :key="item.value" class="wheel-item">{{item.text}}</li>
+                  <li v-for="item in data"
+                      :key="item.value"
+                      class="wheel-item">{{item.text}}</li>
                 </ul>
               </div>
             </div>
@@ -252,38 +265,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../static/border.scss";
-/*.border-top-1px,
-.border-bottom-1px {
-  position: relative;
-}
-.border-top-1px::before,
-.border-bottom-1px::before {
-  content: "";
-  display: block;
-  position: absolute;
-  transform-origin: 0 0;
-}
-.border-top-1px::after,
-.border-bottom-1px::after {
-  content: "";
-  display: block;
-  position: absolute;
-  transform-origin: 0 0;
-}
-.border-top-1px::before {
-  border-top: 1px solid #ddd;
-  left: 0;
-  top: 0;
-  width: 100%;
-  transform-origin: 0 top;
-}
-.border-bottom-1px::after {
-  border-bottom: 1px solid #ddd;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  transform-origin: 0 bottom;
-}*/
+
 .border-top-1px {
   @include border(1px 0 0 0, #e8e8e8);
 }
