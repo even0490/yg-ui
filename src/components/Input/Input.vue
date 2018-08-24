@@ -198,7 +198,6 @@ export default {
 
 .input-content {
   margin-left: 10px;
-  font-size: 4.26667vw;
   flex: 1;
 }
 
