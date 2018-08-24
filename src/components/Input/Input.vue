@@ -204,8 +204,7 @@ export default {
 
 .yg-input input {
   width: 100%;
-  height: 11.73333vw;
-  line-height: 6vw;
+  height: 100%;
   color: #555555;
   position: relative;
   border-radius: 0;
@@ -214,51 +213,5 @@ export default {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
   outline: none;
   -webkit-appearance: none;
-}
-
-.small {
-  margin: 0 auto;
-}
-
-.codeInput {
-  float: left;
-  height: 44px;
-  width: 3.9rem;
-}
-
-.formItem input {
-  display: block;
-  border: none;
-  width: 100%;
-  height: 100%;
-  padding: 0 15px;
-  font-size: 15px;
-  background: transparent;
-}
-
-.codeBtn span {
-  display: block;
-  position: relative;
-  border-radius: 3px;
-  font-size: 15px;
-  line-height: 44px;
-  text-align: center;
-  font-weight: bold;
-  background: rgb(245, 130, 94);
-  border: none;
-  color: rgb(255, 255, 255);
-}
-
-.codeBtn {
-  width: 2.3rem;
-  float: right;
-}
-
-.formItem::after {
-  content: " ";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
 }
 </style>
