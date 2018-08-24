@@ -1,7 +1,7 @@
 <template>
-  <div class="formCheck">
+  <form class="formCheck">
     <slot></slot>
-  </div>
+  </form>
 </template>
 
 <script>
