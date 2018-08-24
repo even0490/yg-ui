@@ -96,13 +96,12 @@ export default {
 @import "../../../static/border.scss";
 @import "../../../static/transition.css";
 .yg-checkbox {
-  display: inline-block;
+  display: block;
   white-space: nowrap;
   user-select: none;
   position: relative;
   line-height: 1;
   font-size: 0;
-  vertical-align: middle;
   cursor: pointer;
 }
 .yg-checkbox-box {
@@ -132,7 +131,6 @@ export default {
 }
 .yg-checkbox-label {
   display: inline-block;
-  padding-left: 10px;
   font-size: 15px;
   vertical-align: middle;
 }
