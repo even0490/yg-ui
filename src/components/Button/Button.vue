@@ -44,7 +44,6 @@ export default {
           className = "yg-button-medium";
           break;
         default:
-          className = "yg-button-medium";
           break;
       }
       return className;

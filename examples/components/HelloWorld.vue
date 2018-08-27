@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <yg-form ref="formDate">
+    <yg-form ref="formDate"
+             :rule="rule">
       <yg-input id="phone"
                 class="we"
                 prop="phone"
@@ -146,12 +147,22 @@ export default {
         passWord: "密码不能为空",
         code: "验证码不能为空"
       },
-      rulePhone: { required: true, regex: /^[abcde]*$/, regTxt: "名字有误" },
-      ruleCode: { required: true, regex: /^[0-9]$/, regTxt: "只能是数字" },
-      rulePassWord: {
-        required: true,
-        regex: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
-        regTxt: "密码有误"
+      rule: {
+        phone: [{ required: true, regex: /^[abcde]*$/, regTxt: "名字有误1" }],
+        code: [
+          { required: true, fn: () => true, regTxt: "只能是数字1" },
+          { required: true, regex: /^[0-9]*$/, regTxt: "只能是数字2" }
+        ],
+        passWord: [
+          {
+            promise: () => Promise.resolve(),
+            regTxt: "密码有误1"
+          },
+          {
+            promise: () => Promise.resolve(),
+            regTxt: "密码有误2"
+          }
+        ]
       },
       show: false,
       selectedIndex: [[0], [1, 0], [0, 1, 2], [0, 0, 0]],
@@ -179,7 +190,14 @@ export default {
       this.$refs.btn2.cancel();
     },
     checkForm() {
-      console.log(this.$refs.formDate.checkDate);
+      this.$refs.formDate
+        .checkForm()
+        .then(data => {
+          console.log("success");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
 
     close() {
@@ -193,16 +211,6 @@ export default {
     toShow() {
       this.show = true;
     }
-  },
-  checkForm() {
-    this.$refs.formDate
-      .checkForm()
-      .then(data => {
-        console.log("success");
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 };
 </script>

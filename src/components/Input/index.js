@@ -13,7 +13,6 @@ function setGlobalStyle(option) {
   let borderRadiusData = borderRadius.match(/(\d+)(\w+)?/);
   let borderRadiusNum = borderRadiusData[1];
   let borderRadiusUnit = borderRadiusData[2] || "px";
-  console.log(`${borderRadiusNum}${borderRadiusUnit}`);
 
   let styleTmp = `
   .yg-input-border.yg-input{
