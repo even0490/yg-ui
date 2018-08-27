@@ -56,19 +56,15 @@ export default {
   left: 50%;
   box-sizing: border-box;
   max-width: 80%;
-  height: 10.6667vw;
   line-height: 5.3333vw;
   padding: 2.6667vw 5.3333vw;
   transform: translate3d(-50%, -50%, 0);
-  text-align: center;
   font-size: 0;
   z-index: 9999;
   color: #fff;
   border-radius: 1.3333vw;
   background: rgba(0, 0, 0, 0.7);
-  overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .yg-toast__content {
   font-size: 3.7333vw;
