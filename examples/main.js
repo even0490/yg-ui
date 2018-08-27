@@ -7,6 +7,10 @@ import ygui from "../src/index";
 Vue.use(ygui, {
   Button: {
     defaultBackground: "#f5825e"
+  },
+  Input: {
+    borderRadius: "0px",
+    borderWidth: "1px 0 1px 0"
   }
 });
 Vue.config.productionTip = false;

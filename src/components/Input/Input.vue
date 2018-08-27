@@ -1,6 +1,5 @@
 <template>
-  <div class="yg-input"
-       :style="styles">
+  <div class="yg-input yg-input-border">
     <slot name="iconLeft"></slot>
     <div class="input-content">
       <input :id="id"
@@ -38,7 +37,7 @@
 <script>
 import closeeye from "../../assets/closeeye.png";
 import openeye from "../../assets/openeye.png";
-import config from "../../config.js";
+
 export default {
   name: "yg-input",
   data() {
@@ -50,14 +49,6 @@ export default {
       closeeye,
       openeye
     };
-  },
-  computed: {
-    styles() {
-      return {
-        background: config.Input.background,
-        borderColor: config.Input.borderColor
-      };
-    }
   },
   inject: ["inputRegister"],
   props: {
@@ -188,8 +179,7 @@ export default {
   height: 44px;
   background-color: #ffffff;
   position: relative;
-  border-radius: 5px;
-  @include border(1px, inherit, solid, 4px);
+  @include border(1px, inherit, solid, 5px);
 }
 
 .yg-input img {

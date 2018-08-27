@@ -11,7 +11,9 @@ let config = {
   },
   Input: {
     background: "white",
-    borderColor: "#e8e8e8"
+    borderColor: "#e8e8e8",
+    borderRadius: "4px",
+    borderWidth: "1px"
   },
   CheckBox: {
     borderColor: "#c3ab69",
@@ -31,7 +33,7 @@ export default config;
 
 export const setOptions = (options, componentName) => {
   if (componentName) {
-    Object.assign(config[componentName], options && options[componentName]);
+    Object.assign(config[componentName], options);
   } else {
     Object.keys(config).forEach(key => {
       Object.assign(config[key], options);
