@@ -55,7 +55,7 @@ export default {
                 return Promise.reject({ [key]: rule.regTxt });
               }
             } else if (rule.promise !== undefined) {
-              return rule.promise().then(
+              return rule.promise(vm.value).then(
                 () => {
                   return Promise.resolve();
                 },
