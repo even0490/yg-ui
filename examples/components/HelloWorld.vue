@@ -148,14 +148,19 @@ export default {
         code: "验证码不能为空"
       },
       rule: {
-        phone: [{ required: true, regex: /^[abcde]*$/, regTxt: "名字有误1" }],
+        phone: [],
         code: [
-          { required: true, fn: () => true, regTxt: "只能是数字1" },
-          { required: true, regex: /^[0-9]*$/, regTxt: "只能是数字2" }
+          { required: true, fn: val => val !== "", regTxt: "只能是数字1" },
+          {
+            promise: () => {
+              Promise.reject();
+            },
+            regTxt: "密码有误2"
+          }
         ],
         passWord: [
           {
-            promise: () => Promise.resolve(),
+            promise: () => Promise.reject(),
             regTxt: "密码有误1"
           },
           {

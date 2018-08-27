@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import Queue from "../../tool/Queue.js";
 export default {
   name: "yg-form",
   data: function() {
@@ -37,32 +38,38 @@ export default {
         ([key, val]) => {
           let vm = this.inputsObj[key];
           let rules = this.rule[key];
+          const queue = new Queue();
           if (!rules) {
             return;
           }
-
           let checkPromiseArr = rules.map(rule => {
             if (rule.regex !== undefined) {
-              if (rule.regex.test(vm.value)) {
-                return Promise.resolve();
-              } else {
-                return Promise.reject({ [key]: rule.regTxt });
-              }
-            } else if (rule.fn !== undefined) {
-              if (rule.fn(vm.value)) {
-                return Promise.resolve();
-              } else {
-                return Promise.reject({ [key]: rule.regTxt });
-              }
-            } else if (rule.promise !== undefined) {
-              return rule.promise(vm.value).then(
-                () => {
+              return queue.add(() => {
+                if (rule.regex.test(vm.value)) {
                   return Promise.resolve();
-                },
-                () => {
+                } else {
                   return Promise.reject({ [key]: rule.regTxt });
                 }
-              );
+              });
+            } else if (rule.fn !== undefined) {
+              return queue.add(() => {
+                if (rule.fn(vm.value)) {
+                  return Promise.resolve();
+                } else {
+                  return Promise.reject({ [key]: rule.regTxt });
+                }
+              });
+            } else if (rule.promise !== undefined) {
+              return queue.add(() => {
+                return rule.promise(vm.value).then(
+                  () => {
+                    return Promise.resolve();
+                  },
+                  () => {
+                    return Promise.reject({ [key]: rule.regTxt });
+                  }
+                );
+              });
             }
           });
 
