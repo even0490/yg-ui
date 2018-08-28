@@ -9,13 +9,14 @@
     <transition name="yg-slide">
       <div class="yg-popup-box"
            v-show="visible">
-        <div class="yg-popup-list">
+        <div class="yg-popup-top">
+          <slot name="top"></slot>
+        </div>
+        <div class="yg-popup-cont">
           <slot></slot>
         </div>
-        <div class="yg-popup-cancel"
-             v-if="cancelBtn">
-          <div class="yg-popup-item"
-               @click="hide"> 取消</div>
+        <div class="yg-popup-bottom">
+          <slot name="bottom"></slot>
         </div>
       </div>
     </transition>
@@ -41,10 +42,6 @@ export default {
     visible: {
       type: Boolean,
       default: false
-    },
-    cancelBtn: {
-      type: Boolean,
-      default: true
     }
   }
 };
@@ -64,24 +61,15 @@ export default {
   position: fixed;
   z-index: 1000;
   bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.yg-popup-item {
-  text-align: center;
-  line-height: 40px;
-  font-size: 17px;
-  color: #ad935d;
-  background: white;
-  border-radius: 4px;
-}
-.yg-popup-list,
-.yg-popup-cancel {
-  margin: 10px 0;
-}
-.yg-popup-cancel .yg-popup-item {
-  line-height: 40px;
-  color: #ad935d;
+.yg-popup-cont {
+  position: relative;
+  flex: 1;
 }
 </style>

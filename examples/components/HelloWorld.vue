@@ -65,7 +65,8 @@
                title="请选择"
                cancelTxt="取消"
                confirmTxt="确认"></yg-picker>
-
+    <yg-popup :visible="true">
+    </yg-popup>
     <router-link to="/slid">slid</router-link>
   </div>
 </template>
