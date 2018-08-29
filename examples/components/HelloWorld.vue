@@ -38,7 +38,6 @@
                type="cancel"
                ref="btn"></yg-button>
     <yg-button @click="handleClick2"
-               :disabled="true"
                btnTxt="取消"
                bgColor="#fff"
                txtHeight="1.2rem"
@@ -65,8 +64,8 @@
                title="请选择"
                cancelTxt="取消"
                confirmTxt="确认"></yg-picker>
-    <yg-popup :visible="true">
-    </yg-popup>
+    <!-- <yg-notification :visible.sync="test"
+                     :footer="false"></yg-notification> -->
     <router-link to="/slid">slid</router-link>
   </div>
 </template>
@@ -143,6 +142,7 @@ export default {
       mobile: "",
       pwd: "",
       email: "",
+      test: true,
       checkDefault: {
         phone: "手机号不能为空",
         passWord: "密码不能为空",
@@ -192,8 +192,14 @@ export default {
       this.show = true;
     },
     handleClick2() {
-      this.$toast(Math.random() + "");
-      this.$refs.btn2.cancel();
+      this.$confirm(Math.random() + "")
+        .then(() => {
+          console.log("su");
+        })
+        .catch(() => {
+          console.log("cat");
+        });
+      // this.$toast(Math.random() + "");
     },
     checkForm() {
       this.$refs.formDate
