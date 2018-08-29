@@ -10,7 +10,7 @@
           <slot name="header"></slot>
         </div>
         <div class="yg-dialog-content"
-             @click="hide">
+             @click="contHide&&hide()">
           <slot></slot>
         </div>
         <div class="yg-dialog-footer">
@@ -34,6 +34,10 @@ export default {
       default: true
     },
     maskHide: {
+      type: Boolean,
+      default: true
+    },
+    contHide: {
       type: Boolean,
       default: true
     },

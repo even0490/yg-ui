@@ -1,5 +1,6 @@
 <template>
   <yg-dialog ref="dialogBox"
+             :contHide="false"
              :visible="visible"
              @update:visible="editVisible"
              :maskHide="false">
