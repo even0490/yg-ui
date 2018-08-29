@@ -17,6 +17,7 @@ let config = {
     checkBg: "white",
     checkColor: "#c3ab69"
   },
+
   Confirm: {
     color: "#AD935D"
   },

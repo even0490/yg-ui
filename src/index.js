@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import CheckBox from "./components/CheckBox";
 import Transition from "./components/Transition";
 import CheckBoxGroup from "./components/CheckBoxGroup";
+import Scroll from "./components/Scroll";
 
 import ToastPlugin from "./plugin/toast";
 import LoadingPlugin from "./plugin/loading";
@@ -32,7 +33,8 @@ const components = {
   CheckBox,
   CheckBoxGroup,
   Picker,
-  Transition
+  Transition,
+  Scroll
 };
 
 const plugin = {
