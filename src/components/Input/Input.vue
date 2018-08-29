@@ -1,6 +1,5 @@
 <template>
-  <div class="yg-input"
-       :style="styles">
+  <div class="yg-input yg-input-border">
     <slot name="iconLeft"></slot>
     <div class="input-content">
       <input :id="id"
@@ -38,7 +37,7 @@
 <script>
 import closeeye from "../../assets/closeeye.png";
 import openeye from "../../assets/openeye.png";
-import config from "../../config.js";
+
 export default {
   name: "yg-input",
   data() {
@@ -50,14 +49,6 @@ export default {
       closeeye,
       openeye
     };
-  },
-  computed: {
-    styles() {
-      return {
-        background: config.Input.background,
-        borderColor: config.Input.borderColor
-      };
-    }
   },
   inject: ["inputRegister"],
   props: {
@@ -156,7 +147,7 @@ export default {
 };
 </script>
 <style lang="scss" scope>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 .icon-pwd {
   display: flex;
   align-items: center;
@@ -188,9 +179,7 @@ export default {
   height: 44px;
   background-color: #ffffff;
   position: relative;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  @include border(1px, inherit, solid, 4px);
+  @include border(1px, inherit, solid, 5px);
 }
 
 .yg-input img {
@@ -199,15 +188,12 @@ export default {
 
 .input-content {
   margin-left: 10px;
-  font-size: 4.26667vw;
   flex: 1;
 }
 
 .yg-input input {
   width: 100%;
-  height: 11.73333vw;
-  line-height: 6vw;
-  color: #555555;
+  height: 100%;
   position: relative;
   border-radius: 0;
   border: none;
@@ -215,51 +201,5 @@ export default {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
   outline: none;
   -webkit-appearance: none;
-}
-
-.small {
-  margin: 0 auto;
-}
-
-.codeInput {
-  float: left;
-  height: 44px;
-  width: 3.9rem;
-}
-
-.formItem input {
-  display: block;
-  border: none;
-  width: 100%;
-  height: 100%;
-  padding: 0 15px;
-  font-size: 15px;
-  background: transparent;
-}
-
-.codeBtn span {
-  display: block;
-  position: relative;
-  border-radius: 3px;
-  font-size: 15px;
-  line-height: 44px;
-  text-align: center;
-  font-weight: bold;
-  background: rgb(245, 130, 94);
-  border: none;
-  color: rgb(255, 255, 255);
-}
-
-.codeBtn {
-  width: 2.3rem;
-  float: right;
-}
-
-.formItem::after {
-  content: " ";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
 }
 </style>

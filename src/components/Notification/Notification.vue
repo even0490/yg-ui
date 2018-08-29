@@ -1,23 +1,29 @@
 <template>
   <yg-dialog ref="dialogBox"
+             :contHide="false"
+             :visible="visible"
+             @update:visible="editVisible"
              :maskHide="false">
+    <div class="yg-notification-header"
+         slot="header">
+      <yg-icon class="yg-notification-close"
+               v-show="closeIcon"
+               type="close"
+               @click.native="btnHandler('close')"></yg-icon>
+      <p class="yg-notification-title">{{title}}</p>
+    </div>
     <div class="yg-notification-box">
-      <div class="yg-notification-header">
-        <yg-icon class="yg-notification-close"
-                 v-show="closeIcon"
-                 type="close"
-                 @click.native="btnHandler('cancel')"></yg-icon>
-        <p class="yg-notification-title">{{title}}</p>
-      </div>
-      <div class="yg-notification-content">{{text}}</div>
-      <div class="yg-notification-btns">
-        <yg-button type="cancel"
-                   size="mini"
-                   v-show="cancelBtn"
-                   @click="btnHandler('cancel')">{{cancelTxt}}</yg-button>
-        <yg-button size="mini"
-                   @click="btnHandler('submit')">{{submitTxt}}</yg-button>
-      </div>
+      <slot></slot>
+    </div>
+    <div class="yg-notification-btns"
+         v-show="footer"
+         slot="footer">
+      <yg-button type="cancel"
+                 size="mini"
+                 v-show="cancelBtn"
+                 @click="btnHandler('cancel')">{{cancelTxt}}</yg-button>
+      <yg-button size="mini"
+                 @click="btnHandler('submit')">{{submitTxt}}</yg-button>
     </div>
   </yg-dialog>
 </template>
@@ -25,81 +31,83 @@
 <script>
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
+import Dialog from "../Dialog";
+
 export default {
   name: "yg-notification",
   components: {
     "yg-button": Button,
-    "yg-icon": Icon
+    "yg-icon": Icon,
+    "yg-dialog": Dialog
   },
   data() {
-    return {
-      title: "提示",
-      text: "",
-      submitTxt: "确定",
-      cancelTxt: "取消",
-      defaultOption: {
-        title: "提示",
-        text: "",
-        submitTxt: "确定",
-        cancelTxt: "取消"
-      }
-    };
+    return {};
   },
   props: {
+    visible: {
+      type: Boolean,
+      default: false
+    },
     closeIcon: {
+      type: Boolean,
+      default: true
+    },
+    footer: {
       type: Boolean,
       default: true
     },
     cancelBtn: {
       type: Boolean,
       default: true
+    },
+    submitTxt: {
+      type: String,
+      default: "确定"
+    },
+    cancelTxt: {
+      type: String,
+      default: "取消"
+    },
+    title: {
+      type: String,
+      default: "提示"
     }
   },
   methods: {
-    show() {
-      this.$refs.dialogBox.show({});
-      return new Promise((resolve, reject) => {
-        this.$once("close", flag => {
-          if (flag === "submit") {
-            resolve();
-          } else {
-            reject();
-          }
-        });
-      });
+    editVisible(vl) {
+      this.$emit("update:visible", vl);
     },
     hide() {
       this.$refs.dialogBox.hide();
     },
     btnHandler(flag) {
-      this.hide();
-      this.$emit("close", flag);
+      flag === "close" && this.hide();
+      this.$emit(flag);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 .yg-notification-header {
   @include border(0 0 1px);
   text-align: center;
   position: relative;
   line-height: 50px;
-  font-size: 17px;
+  font-size: 16px;
   color: rgb(85, 85, 85);
 }
 .yg-notification-close {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  padding: 15px;
+  width: 16px;
+  height: 16px;
+  padding: 16px;
   left: 0;
   top: 0;
   cursor: pointer;
 }
-.yg-notification-content {
-  padding: 15px 15px 20px;
+.yg-notification-box {
   font-size: 14px;
   line-height: 20px;
   text-align: center;

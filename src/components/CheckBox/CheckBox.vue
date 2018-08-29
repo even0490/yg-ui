@@ -93,16 +93,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/border.scss";
-@import "../../style/transition.css";
+@import "../../../static/border.scss";
 .yg-checkbox {
-  display: inline-block;
+  display: block;
   white-space: nowrap;
   user-select: none;
   position: relative;
   line-height: 1;
   font-size: 0;
-  vertical-align: middle;
   cursor: pointer;
 }
 .yg-checkbox-box {
@@ -132,7 +130,6 @@ export default {
 }
 .yg-checkbox-label {
   display: inline-block;
-  padding-left: 10px;
   font-size: 15px;
   vertical-align: middle;
 }

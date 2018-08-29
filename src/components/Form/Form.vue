@@ -1,10 +1,11 @@
 <template>
-  <div class="formCheck">
+  <form class="formCheck">
     <slot></slot>
-  </div>
+  </form>
 </template>
 
 <script>
+import Queue from "../../tool/Queue.js";
 export default {
   name: "yg-form",
   data: function() {
@@ -33,26 +34,68 @@ export default {
     },
     checkForm: function() {
       let checkResult;
-      Object.keys(this.inputsObj).forEach(key => {
-        let vm = this.inputsObj[key];
-        let rules = this.rule[key];
-        if (!rules) {
-          return;
+      let checkResultPromisrArr = Object.entries(this.inputsObj).map(
+        ([key, val]) => {
+          let vm = this.inputsObj[key];
+          let rules = this.rule[key];
+          const queue = new Queue();
+          if (!rules) {
+            return;
+          }
+          let checkPromiseArr = rules.map(rule => {
+            if (rule.regex !== undefined) {
+              return queue.add(() => {
+                if (rule.regex.test(vm.value)) {
+                  return Promise.resolve();
+                } else {
+                  return Promise.reject({ [key]: rule.regTxt });
+                }
+              });
+            } else if (rule.fn !== undefined) {
+              return queue.add(() => {
+                if (rule.fn(vm.value)) {
+                  return Promise.resolve();
+                } else {
+                  return Promise.reject({ [key]: rule.regTxt });
+                }
+              });
+            } else if (rule.promise !== undefined) {
+              return queue.add(() => {
+                return rule.promise(vm.value).then(
+                  () => {
+                    return Promise.resolve();
+                  },
+                  () => {
+                    return Promise.reject({ [key]: rule.regTxt });
+                  }
+                );
+              });
+            }
+          });
+
+          return Promise.all(checkPromiseArr).then(
+            () => {
+              return Promise.resolve();
+            },
+            err => {
+              return Promise.resolve(err);
+            }
+          );
         }
-        rules.find(rule => {
-          if (!rule.regex.test(vm.value)) {
-            checkResult || (checkResult = {});
-            checkResult[key] = rule.regTxt;
-            return true;
+      );
+
+      return Promise.all(checkResultPromisrArr).then(err => {
+        let result;
+        err.forEach(item => {
+          if (item !== undefined) {
+            result === undefined && (result = {});
+            Object.assign(result, item);
           }
         });
-      });
-
-      return new Promise((resolve, reject) => {
-        if (checkResult === undefined) {
-          resolve();
+        if (result === undefined) {
+          return Promise.resolve();
         } else {
-          reject(checkResult);
+          return Promise.reject(result);
         }
       });
     }

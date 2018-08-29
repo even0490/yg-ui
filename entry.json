@@ -9,7 +9,12 @@
     "Dialog": "./src/components/Dialog",
     "Loading": "./src/components/Loading",
     "Notification": "./src/components/Notification",
-    "Scroll": "./src/components/Scroll"
+    "Scroll": "./src/components/Scroll",
+    "Carousel": "./src/components/Carousel",
+    "Icon": "./src/components/Icon",
+    "CheckBox": "./src/components/CheckBox",
+    "CheckBoxGroup": "./src/components/CheckBoxGroup",
+    "Popup": "./src/components/Popup"
   },
   "plugin": {
     "alert": "./src/plugin/alert",

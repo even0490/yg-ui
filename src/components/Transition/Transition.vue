@@ -27,11 +27,12 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
 .yg-transition {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .yg-slide-in-enter {
@@ -46,7 +47,6 @@ export default {
 .yg-slide-in-leave-active {
   position: absolute;
   width: 100%;
-  background: white;
 }
 
 .yg-slide-in-enter-active {
@@ -94,7 +94,6 @@ export default {
 .yg-slide-out-leave-active {
   position: absolute;
   width: 100%;
-  background: white;
 }
 
 .yg-slide-out-leave-active {

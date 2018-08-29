@@ -2,11 +2,9 @@
   <div class="yg-button"
        :class="className">
     <button @click="handleClick"
+            type="button"
             :class="btnClass"
-            :disabled="disabled"
-            :style="{ background:bgColor,
-                      color: txtColor,
-                      fontWeight: txtWeight }">
+            :disabled="disabled">
       <slot>submit</slot>
     </button>
   </div>
@@ -46,7 +44,6 @@ export default {
           className = "yg-button-medium";
           break;
         default:
-          className = "yg-button-medium";
           break;
       }
       return className;
@@ -86,32 +83,32 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../../style/border.scss";
+@import "../../../static/border.scss";
 .yg-button {
   border: none;
   color: #fff;
   font-size: 16px;
+  height: 50px;
   text-align: center;
 }
-.yg-button-mini {
+.yg-button.yg-button-mini {
   height: 30px;
   font-size: 14px;
 }
-.yg-button-small {
+.yg-button.yg-button-small {
   height: 40px;
 }
-.yg-button-medium {
+.yg-button.yg-button-medium {
   height: 44px;
 }
 .yg-button button {
   padding: 0 20px;
   display: block;
   width: 100%;
-  height: 88px;
+  height: 100%;
   text-align: center;
   border: none;
   border-radius: 4px;
-  margin: 15px auto 0;
   outline: none;
 }
 .yg-button .yg-button-cancel {

@@ -50,28 +50,25 @@ export default {
 </script>
 
 <style scoped>
-@import "../../style/transition.css";
 .yg-toast-box {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  box-sizing: border-box;
-  max-width: 80%;
-  height: 10.6667vw;
-  line-height: 5.3333vw;
-  padding: 2.6667vw 5.3333vw;
-  transform: translate3d(-50%, -50%, 0);
-  text-align: center;
+  top: 188px;
+  left: 0;
+  width: 100%;
   font-size: 0;
   z-index: 9999;
-  color: #fff;
-  border-radius: 1.3333vw;
-  background: rgba(0, 0, 0, 0.7);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-align: center;
 }
 .yg-toast__content {
-  font-size: 3.7333vw;
+  font-size: 14px;
+  border-radius: 5px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 5px black;
+  max-width: 223px;
+  line-height: 20px;
+  padding: 12px 25px;
+  text-align: left;
+  display: inline-block;
 }
 </style>
