@@ -1,7 +1,7 @@
 <template>
   <yg-dialog ref="dialogBox"
              :contHide="false"
-             :visible.sync="visible"
+             :visible="visible"
              @update:visible="editVisible"
              :maskHide="false">
     <div class="yg-notification-header"
