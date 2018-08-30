@@ -154,7 +154,7 @@ export default {
           { required: true, fn: val => val !== "", regTxt: "只能是数字1" },
           {
             promise: () => {
-              Promise.reject();
+              return Promise.reject();
             },
             regTxt: "密码有误2"
           }

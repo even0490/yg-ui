@@ -32,79 +32,74 @@ export default {
     inputRegister(vm, key) {
       key && (this.inputsObj[key] = vm);
     },
+    wrapPromise(rule, val) {
+      if (rule.regex !== undefined) {
+        return () => {
+          if (rule.regex.test(val)) {
+            return Promise.resolve();
+          } else {
+            return Promise.reject(rule.regTxt);
+          }
+        };
+      }
+      if (rule.fn !== undefined) {
+        return () => {
+          if (rule.fn(val)) {
+            return Promise.resolve();
+          } else {
+            return Promise.reject(rule.regTxt);
+          }
+        };
+      }
+      if (rule.promise !== undefined) {
+        return () => {
+          return rule.promise(val).then(
+            () => {
+              return Promise.resolve();
+            },
+            () => {
+              return Promise.reject(rule.regTxt);
+            }
+          );
+        };
+      }
+    },
     checkForm: function(props) {
       let checkResult;
       if (typeof props === "string") {
         props = [props];
       }
-      let checkResultPromisrArr = Object.entries(this.inputsObj).map(
-        ([key, vm]) => {
-          let rules = this.rule[key];
-          if (!rules) {
-            return;
-          } else if (props !== undefined) {
-            if (!props.find(item => item === key)) {
-              return;
-            }
+
+      const queue = new Queue();
+      let checkResultPromisrArr = [];
+
+      Object.keys(this.rule)
+        .filter(key => {
+          if (props === undefined) {
+            return true;
+          } else {
+            return !!props.find(item => item === key);
           }
+        })
+        .forEach(key => {
+          let vm = this.inputsObj[key];
+          let rules = this.rule[key];
 
-          const queue = new Queue();
-          let checkPromiseArr = rules.map(rule => {
-            if (rule.regex !== undefined) {
-              return queue.add(() => {
-                if (rule.regex.test(vm.value)) {
-                  return Promise.resolve();
-                } else {
-                  return Promise.reject({ [key]: rule.regTxt });
-                }
-              });
-            } else if (rule.fn !== undefined) {
-              return queue.add(() => {
-                if (rule.fn(vm.value)) {
-                  return Promise.resolve();
-                } else {
-                  return Promise.reject({ [key]: rule.regTxt });
-                }
-              });
-            } else if (rule.promise !== undefined) {
-              return queue.add(() => {
-                return rule.promise(vm.value).then(
-                  () => {
-                    return Promise.resolve();
-                  },
-                  () => {
-                    return Promise.reject({ [key]: rule.regTxt });
-                  }
-                );
-              });
-            }
+          rules.forEach(rule => {
+            checkResultPromisrArr.push(
+              queue.add(this.wrapPromise(rule, vm.value))
+            );
           });
+        });
 
-          return Promise.all(checkPromiseArr).then(
-            () => {
-              return Promise.resolve();
-            },
-            err => {
-              return Promise.resolve(err);
-            }
-          );
+      return Promise.all(checkResultPromisrArr).then(
+        () => {
+          return Promise.resolve();
+        },
+        err => {
+          return Promise.reject(new Error(err));
         }
       );
-
-      return Promise.all(checkResultPromisrArr).then(err => {
-        let result;
-        err.forEach(item => {
-          if (item !== undefined) {
-            result === undefined && (result = {});
-            Object.assign(result, item);
-          }
-        });
-        if (result === undefined) {
-          return Promise.resolve();
-        } else {
-          return Promise.reject(result);
-        }
-      });
     }
   }
 };
