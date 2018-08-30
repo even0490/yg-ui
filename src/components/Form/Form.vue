@@ -32,16 +32,23 @@ export default {
     inputRegister(vm, key) {
       key && (this.inputsObj[key] = vm);
     },
-    checkForm: function() {
+    checkForm: function(props) {
       let checkResult;
+      if (typeof props === "string") {
+        props = [props];
+      }
       let checkResultPromisrArr = Object.entries(this.inputsObj).map(
-        ([key, val]) => {
-          let vm = this.inputsObj[key];
+        ([key, vm]) => {
           let rules = this.rule[key];
-          const queue = new Queue();
           if (!rules) {
             return;
+          } else if (props !== undefined) {
+            if (!props.find(item => item === key)) {
+              return;
+            }
           }
+
+          const queue = new Queue();
           let checkPromiseArr = rules.map(rule => {
             if (rule.regex !== undefined) {
               return queue.add(() => {

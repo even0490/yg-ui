@@ -17,6 +17,7 @@
              ref="input"
              v-model="currentValue"
              @blur="handleBlur"
+             @focus="handleFocus"
              @input="handleInput">
     </div>
     <transition name="yg-fade">
@@ -134,6 +135,9 @@ export default {
     },
     handleBlur(e) {
       this.$emit("blur", e);
+    },
+    handleFocus(e) {
+      this.$emit("focus", e);
     },
     bankCardFilter(value) {
       if (!value) return "";

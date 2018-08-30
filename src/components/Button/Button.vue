@@ -102,7 +102,6 @@ export default {
   height: 44px;
 }
 .yg-button button {
-  padding: 0 20px;
   display: block;
   width: 100%;
   height: 100%;
