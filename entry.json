@@ -9,6 +9,7 @@
     "Dialog": "./src/components/Dialog",
     "Loading": "./src/components/Loading",
     "Notification": "./src/components/Notification",
+    "Scroll": "./src/components/Scroll",
     "Carousel": "./src/components/Carousel",
     "Icon": "./src/components/Icon",
     "CheckBox": "./src/components/CheckBox",
