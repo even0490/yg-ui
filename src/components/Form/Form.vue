@@ -81,14 +81,7 @@ export default {
           });
         });
 
-      return Promise.all(checkResultPromisrArr).then(
-        () => {
-          return Promise.resolve();
-        },
-        err => {
-          return Promise.reject(new Error(err));
-        }
-      );
+      return Promise.all(checkResultPromisrArr);
     }
   }
 };
