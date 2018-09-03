@@ -1,6 +1,6 @@
 {
   "name": "yg-ui",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "description": "A UI components Library with Vue.js",
   "author": "licheng <even0490@163.com>",
   "main": "./dist/index.js",
