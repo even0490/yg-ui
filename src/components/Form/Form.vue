@@ -43,24 +43,13 @@ export default {
         };
       }
       if (rule.fn !== undefined) {
-        return () => {
-          if (rule.fn(val)) {
-            return Promise.resolve();
-          } else {
-            return Promise.reject(rule.regTxt);
-          }
+        return async () => {
+          rule.fn(val);
         };
       }
       if (rule.promise !== undefined) {
         return () => {
-          return rule.promise(val).then(
-            () => {
-              return Promise.resolve();
-            },
-            () => {
-              return Promise.reject(rule.regTxt);
-            }
-          );
+          return rule.promise(val);
         };
       }
     },

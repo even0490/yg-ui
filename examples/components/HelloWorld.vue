@@ -151,12 +151,17 @@ export default {
       rule: {
         phone: [],
         code: [
-          { required: true, fn: val => val !== "", regTxt: "只能是数字1" },
+          {
+            required: true,
+            fn: val => {
+              throw new Error("111");
+            },
+            regTxt: "只能是数字1"
+          },
           {
             promise: () => {
-              return Promise.reject();
-            },
-            regTxt: "密码有误2"
+              return Promise.reject(123);
+            }
           }
         ],
         passWord: [
