@@ -17,8 +17,7 @@
              ref="input"
              v-model="currentValue"
              @blur="handleBlur"
-             @focus="handleFocus"
-             @input="handleInput">
+             @focus="handleFocus">
     </div>
     <transition name="yg-fade">
       <div v-show="closeBtn&&value"
@@ -43,7 +42,6 @@ export default {
   name: "yg-input",
   data() {
     return {
-      currentValue: this.value,
       textareaCalcStyle: {},
       code: "",
       types: this.type,
@@ -90,9 +88,16 @@ export default {
     },
     form: String,
     maxlength: Number,
-    minlength: Number,
-    format: {
-      type: String
+    minlength: Number
+  },
+  computed: {
+    currentValue: {
+      get: function() {
+        return this.value;
+      },
+      set: function(v) {
+        this.$emit("input", v);
+      }
     }
   },
   methods: {
@@ -108,45 +113,17 @@ export default {
       this.$emit("input", "");
     },
     handleInput(event) {
-      let pos = this.$refs.input.selectionEnd;
-      let originalVal = "";
-      let inputVal = event.target ? event.target.value : event;
-
-      switch (this.format) {
-        case "bankCard":
-          originalVal = inputVal.replace(/\s/g, "");
-          this.currentValue = this.bankCardFilter(originalVal);
-          break;
-
-        default:
-          originalVal = this.currentValue = inputVal;
-          break;
-      }
-      if (this.currentValue.length > inputVal.length) {
-        pos += this.currentValue.length - inputVal.length;
-      }
-      this.$nextTick(() => {
-        this.$refs.input.setSelectionRange(pos, pos);
-      });
-      this.$emit("input", originalVal);
-    },
-    handleIconClick(event) {
-      this.$emit("click", event);
+      console.log(event);
     },
     handleBlur(e) {
       this.$emit("blur", e);
     },
     handleFocus(e) {
       this.$emit("focus", e);
-    },
-    bankCardFilter(value) {
-      if (!value) return "";
-      return value.replace(/(\d{4})(?!\s)(?!$)/g, "$1 ");
     }
   },
   mounted() {
     this.inputRegister(this, this.prop);
-    this.handleInput(this.value);
   }
 };
 </script>

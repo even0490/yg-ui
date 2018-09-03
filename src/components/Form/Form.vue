@@ -64,7 +64,7 @@ export default {
 
       Object.keys(this.rule)
         .filter(key => {
-          if (props === undefined) {
+          if (props === undefined || this.inputsObj[key] === undefined) {
             return true;
           } else {
             return !!props.find(item => item === key);
