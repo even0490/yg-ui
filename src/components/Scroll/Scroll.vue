@@ -54,9 +54,13 @@
         <div class="after-trigger" v-else>
           <div v-if="isPullingDown" class="loading">
             <!--<loading></loading>-->
-            <span>加载中</span>
+            <!--<span>加载中</span>-->
+            <span class="pullDownIcon"></span>
+            <span>小贯努力刷新中...</span>
+            <p>与其记账省钱，不如一贯赚钱！</p>
           </div>
-          <div v-else><span>{{refreshTxt}}</span></div>
+          <!--刷新成功之后提示-->
+          <!--<div v-else><span>{{refreshTxt}}</span></div>-->
         </div>
       </div>
     </slot>
@@ -119,7 +123,7 @@ export default {
     },
     scrollbar: {
       type: null,
-      default: true
+      default: false
     },
     pullDownRefresh: {
       type: null,
@@ -204,7 +208,7 @@ export default {
     }
   },
   created() {
-    this.pullDownInitTop = 50;
+    this.pullDownInitTop = 2000;
   },
   mounted() {
     setTimeout(() => {
@@ -454,7 +458,6 @@ export default {
 .list-content {
   position: relative;
   z-index: 10;
-  background: #fff;
 }
 
 .list-item {
@@ -478,7 +481,7 @@ export default {
 }
 
 .after-trigger {
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 .after-trigger i {
   position: relative;
@@ -504,7 +507,6 @@ export default {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background: #fff;
 }
 
 .index-list-content {
