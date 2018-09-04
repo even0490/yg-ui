@@ -139,9 +139,9 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      mobile: "",
-      pwd: "",
-      email: "",
+      mobile: "15234",
+      pwd: "11111",
+      email: "22222",
       test: true,
       checkDefault: {
         phone: "手机号不能为空",
@@ -191,6 +191,7 @@ export default {
       this.show = true;
     },
     handleClick2() {
+        this.mobile = '14123123'
       this.$confirm(Math.random() + "")
         .then(() => {
           console.log("su");

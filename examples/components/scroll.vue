@@ -13,7 +13,7 @@
     <yg-scroll ref="scroll"
                way="indexList"
                :data="data"
-               scrollbar="true"
+               :scrollbar="scrollbar"
                :pullDownRefresh="pullDownRefreshObj"
                :pullUpLoad="pullUpLoadObj"
                :listenScroll="listenScroll"
@@ -24,6 +24,7 @@
                @pullingUp="onPullingUp"
                @click="clickItem"
     >
+
       <!--<ul class="list-content">
         <li @click="clickItem($event,item)" class="list-item" v-for="(item,index) in items" :key="index">{{item}}</li>
       </ul>-->
@@ -34,12 +35,12 @@
   export default {
     data() {
       return {
-        scrollbar: true, //这个配置可以开启滚动条，默认为 false。当设置为 true 或者是一个 Object 的时候，都会开启滚动条，默认是会 fade 的
+        scrollbar: false, //这个配置可以开启滚动条，默认为 false。当设置为 true 或者是一个 Object 的时候，都会开启滚动条，默认是会 fade 的
         scrollbarFade: true,
         pullDownRefresh: true,//个配置用于做下拉刷新功能，默认为 false。当设置为 true 或者是一个 Object 的时候，可以开启下拉刷新，
         pullDownRefreshObj:{
           threshold: 50,//可以配置顶部下拉的距离（threshold）来决定刷新时机
-          stop:40//以及回弹停留的距离（stop）
+          stop:60//以及回弹停留的距离（stop）
         },
         beforePullDownTxt:`下拉刷新`,//下拉提示文字
         beforePullDownOverTxt:`释放刷新...`,//下拉临界点提示
