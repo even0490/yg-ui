@@ -208,7 +208,6 @@ export default {
       this.scroll = new BScroll(this.$refs.wrapper, options);
       if (this.listenScroll) {
         this.scroll.on("scroll", pos => {
-          this.scrollY = pos.y;
           this.$emit("scroll", pos);
         });
       }
@@ -262,6 +261,9 @@ export default {
       this.scroll.destroy();
     },
     _initPullDownRefresh() {
+      this.scroll.on("scroll", pos => {
+        this.scrollY = pos.y;
+      });
       this.scroll.on("pullingDown", () => {
         this.beforePullDown = false;
         this.isPullingDown = true;

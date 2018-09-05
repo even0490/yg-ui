@@ -1,17 +1,8 @@
 <template>
   <div class="scroll">
     <yg-scroll ref="scroll"
-               way="indexList"
-               :scrollbar="scrollbar"
                :pullDownRefresh="true"
-               :pullUpLoad="true"
-               :listenScroll="listenScroll"
-               :probeType="probeType"
-               :beforePullDownTxt="beforePullDownTxt"
-               :beforePullDownOverTxt="beforePullDownOverTxt"
-               @pullingDown="onPullingDown"
-               @pullingUp="onPullingUp"
-               @click="clickItem">
+               :pullUpLoad="true">
       <li v-for="(items,index) in cityData"
           :key="index">
         <p v-for="item in items.cities"
