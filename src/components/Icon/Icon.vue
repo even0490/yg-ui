@@ -16,7 +16,7 @@
          viewBox="0 0 64 64"
          :fill="color">
       <g>
-        <circle r="5"
+        <circle r="8"
                 cx="24"
                 cy="0"
                 transform="translate(32,32)"
@@ -26,7 +26,7 @@
                    values="1;.9;.85;.7;.4;.3;.3;.3;1"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="16.970562748477143"
                 cy="16.97056274847714"
                 transform="translate(32,32)"
@@ -36,7 +36,7 @@
                    values=".3;1;.9;.85;.7;.4;.3;.3;.3"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="1.4695761589768238e-15"
                 cy="24"
                 transform="translate(32,32)"
@@ -46,7 +46,7 @@
                    values=".3;.3;1;.9;.85;.7;.4;.3;.3"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="-16.97056274847714"
                 cy="16.970562748477143"
                 transform="translate(32,32)"
@@ -56,7 +56,7 @@
                    values=".3;.3;.3;1;.9;.85;.7;.4;.3"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="-24"
                 cy="2.9391523179536475e-15"
                 transform="translate(32,32)"
@@ -66,7 +66,7 @@
                    values=".4;.3;.3;.3;1;.9;.85;.7;.4"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="-16.970562748477143"
                 cy="-16.97056274847714"
                 transform="translate(32,32)"
@@ -76,7 +76,7 @@
                    values=".7;.4;.3;.3;.3;1;.9;.85;.7"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="-4.408728476930472e-15"
                 cy="-24"
                 transform="translate(32,32)"
@@ -86,7 +86,7 @@
                    values=".85;.7;.4;.3;.3;.3;1;.9;.85"
                    repeatCount="indefinite"></animate>
         </circle>
-        <circle r="5"
+        <circle r="8"
                 cx="16.970562748477136"
                 cy="-16.970562748477143"
                 transform="translate(32,32)"

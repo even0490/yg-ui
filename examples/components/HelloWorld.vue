@@ -191,7 +191,7 @@ export default {
       this.show = true;
     },
     handleClick2() {
-        this.mobile = '14123123'
+      this.mobile = "14123123";
       this.$confirm(Math.random() + "")
         .then(() => {
           console.log("su");
