@@ -2,7 +2,14 @@
   <div class="scroll">
     <yg-scroll ref="scroll"
                :pullDownRefresh="true"
-               :pullUpLoad="true">
+               :pullUpLoad="true"
+               :listenScroll="listenScroll"
+               :probeType="probeType"
+               :beforePullDownTxt="beforePullDownTxt"
+               :beforePullDownOverTxt="beforePullDownOverTxt"
+               @pullingDown="onPullingDown"
+               @pullingUp="onPullingUp"
+               @click="clickItem">
       <li v-for="(items,index) in cityData"
           :key="index">
         <p v-for="item in items.cities"
@@ -308,10 +315,10 @@ export default {
           // 如果有新数据
           // this.items.unshift('我是新数据: ' + +new Date())
           this.cityData.push.apply(this.cityData, this.newData);
-          // this.$refs.scroll.forceUpdate();
+          this.$refs.scroll.forceUpdate();
         } else {
           // 如果没有新数据
-          // this.$refs.scroll.forceUpdate();
+          this.$refs.scroll.forceUpdate();
         }
       }, 2000);
     },

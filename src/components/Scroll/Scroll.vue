@@ -234,9 +234,12 @@ export default {
     forceUpdate(dirty) {
       this.$nextTick(() => {
         if (this.pullDownRefresh) {
+          this.beforePullDown = true;
+          this.isPullingDown = false;
           this.scroll.finishPullDown();
         }
         if (this.pullUpLoad) {
+          this.isPullUpLoad = false;
           this.scroll.finishPullUp();
         }
         this.refresh();
