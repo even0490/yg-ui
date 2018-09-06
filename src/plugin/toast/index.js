@@ -15,7 +15,12 @@ const plugin = {
 
     const toast = function(options = {}) {
       if (typeof options === "string") {
+        if (options === "") {
+          return;
+        }
         options = { text: options };
+      } else if (options.text === undefined || options.text === "") {
+        return;
       }
       return $vm.show(options);
     };
