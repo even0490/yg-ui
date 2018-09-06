@@ -158,6 +158,7 @@ export default {
 
 <style scoped>
 .yg-icon {
+  box-sizing: content-box;
   -webkit-tap-highlight-color: transparent;
 }
 .yg-icon svg,

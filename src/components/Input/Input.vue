@@ -20,7 +20,7 @@
              @focus="handleFocus">
     </div>
     <transition name="yg-fade">
-      <div v-show="closeBtn&&value"
+      <div v-show="clearBtn&&value"
            @click="clearVal"
            class="icon-close">
         <img src="../../assets/clear.png" />
@@ -58,7 +58,7 @@ export default {
         return this.id;
       }
     },
-    closeBtn: {
+    clearBtn: {
       type: Boolean,
       default: false
     },
