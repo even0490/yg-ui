@@ -4,13 +4,7 @@
          ref="wrapper">
       <div class="yg-carousel-list"
            :style="{width:listWidth}">
-        <div class="yg-carousel-item"
-             v-for="(item,index) in items"
-             :key="index">
-          <a v-if="item.adLinkUrl"
-             :href="item.adLinkUrl"></a>
-          <img :src="item.picUrl" />
-        </div>
+        <slot></slot>
       </div>
       <div v-if="showDot"
            class="yg-carousel-dots">
@@ -30,6 +24,7 @@ export default {
   name: "yg-carousel",
   data() {
     return {
+      items: [],
       slide: undefined,
       timer: undefined,
       listWidth: "100%",
@@ -38,12 +33,6 @@ export default {
     };
   },
   props: {
-    items: {
-      type: Array,
-      default: function() {
-        return [];
-      }
-    },
     loop: {
       type: Boolean,
       default: false
@@ -82,7 +71,6 @@ export default {
           : this.items.length;
       this.dots = new Array(this.items.length);
       this.listWidth = wrapper.clientWidth * childLength + "px";
-
       this.$nextTick(() => {
         this.slide = new BScroll(this.$refs.wrapper, {
           scrollX: true,
@@ -131,6 +119,7 @@ export default {
     update() {
       if (this.slide) {
         this.slide.destroy();
+        clearTimeout(this.timer);
       }
       this.$nextTick(() => {
         this.initSlide();
@@ -151,6 +140,12 @@ export default {
     },
     next() {
       this.slide.next();
+    },
+    goToPage(num) {
+      this.slide.goToPage(num);
+    },
+    registerItem(item) {
+      this.items.push(item);
     }
   },
   mounted() {
@@ -176,6 +171,11 @@ export default {
     this.slide.disable();
     clearTimeout(this.timer);
   },
+  provide: function() {
+    return {
+      registerItem: this.registerItem
+    };
+  },
   watch: {
     loop() {
       this.update();
@@ -190,13 +190,18 @@ export default {
       this.update();
     },
     items() {
-      this.refresh();
+      if (this.slide) {
+        this.update();
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+.yg-carousel {
+  height: 100%;
+}
 .yg-carousel-wrapper {
   width: 100%;
   height: 100%;
@@ -204,24 +209,13 @@ export default {
   position: relative;
 }
 .yg-carousel-list {
+  height: 100%;
   display: flex;
 }
 .yg-carousel-item {
   position: relative;
   height: 100%;
   flex: 1;
-}
-.yg-carousel-item img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.yg-carousel-item a {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 
 .yg-carousel-dots {

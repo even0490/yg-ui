@@ -1,9 +1,19 @@
 <template>
   <div class="slid">
-    <yg-carousel :items="items"
-                 :autoPlay="true"
+    <yg-carousel ref="carousel"
+                 :items="items"
+                 :autoPlay="false"
                  :interval="60"
-                 @click.native="clickHanadler"></yg-carousel>
+                 :loop="false"
+                 @click.native="clickHanadler">
+      <yg-carousel-item class="carousel-item"
+                        v-for="(item,index) in items"
+                        :key="index">
+        <a v-if="item.adLinkUrl"
+           :href="item.adLinkUrl"></a>
+        <img :src="item.picUrl" />
+      </yg-carousel-item>
+    </yg-carousel>
     <router-link to="/">back</router-link>
   </div>
 </template>
@@ -25,11 +35,6 @@ export default {
         {
           adLinkUrl: "https://y.qq.com/msa/218/0_4085.html",
           picUrl: carouselImg2
-        },
-        {
-          adLinkUrl:
-            "https://y.qq.com/m/digitalbum/gold/index.html?_video=true&id=2195876&g_f=shoujijiaodian",
-          picUrl: carouselImg3
         }
       ]
     };
@@ -38,6 +43,11 @@ export default {
     clickHanadler(e) {
       console.log(e);
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$refs.carousel.goToPage(2);
+    }, 1000);
   }
 };
 </script>
@@ -48,5 +58,16 @@ export default {
   width: 100%;
   height: 400px;
   background: yellowgreen;
+}
+.carousel-item img {
+  display: block;
+  width: 100%;
+}
+.carousel-item a {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 </style>

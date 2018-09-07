@@ -3,6 +3,7 @@ import "../static/transition.css";
 import Notification from "./components/Notification";
 import Button from "./components/Button";
 import Carousel from "./components/Carousel";
+import CarouselItem from "./components/CarouselItem";
 import Dialog from "./components/Dialog";
 import Input from "./components/Input";
 import Form from "./components/Form";
@@ -26,6 +27,7 @@ const components = {
   Notification,
   Button,
   Carousel,
+  CarouselItem,
   Dialog,
   Input,
   Icon,
