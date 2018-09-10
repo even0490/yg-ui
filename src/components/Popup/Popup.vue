@@ -55,10 +55,39 @@ export default {
     transition: {
       type: String,
       default: "yg-slide"
+    },
+    appendToBody: {
+      type: Boolean,
+      default: true
     }
   },
   created() {
     window.addEventListener("popstate", this.hide);
+  },
+  mounted() {
+    if (this.visible) {
+      if (this.appendToBody) {
+        document.body.appendChild(this.$el);
+      }
+    }
+  },
+  destroyed() {
+    // if appendToBody is true, remove DOM node after destroy
+    if (this.appendToBody && this.$el && this.$el.parentNode) {
+      this.$el.parentNode.removeChild(this.$el);
+    }
+  },
+  watch: {
+    visible(val) {
+      if (val) {
+        this.$emit("open");
+        if (this.appendToBody) {
+          document.body.appendChild(this.$el);
+        }
+      } else {
+        this.$emit("close");
+      }
+    }
   }
 };
 </script>
@@ -66,7 +95,7 @@ export default {
 <style scoped>
 .yg-popup-mask {
   position: fixed;
-  z-index: 999;
+  z-index: 9999;
   left: 0;
   top: 0;
   right: 0;
@@ -75,7 +104,7 @@ export default {
 }
 .yg-popup-box {
   position: fixed;
-  z-index: 1000;
+  z-index: 9999;
   bottom: 0;
   top: 0;
   left: 0;

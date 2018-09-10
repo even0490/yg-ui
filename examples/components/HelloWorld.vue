@@ -36,7 +36,7 @@
                txtWeight="bold"
                txtColor="#fff"
                type="cancel"
-               ref="btn"></yg-button>
+               ref="btn">dwfgwdfg</yg-button>
     <yg-button @click="handleClick2"
                btnTxt="取消"
                bgColor="#fff"
@@ -64,8 +64,7 @@
                title="请选择"
                cancelTxt="取消"
                confirmTxt="确认"></yg-picker>
-    <!-- <yg-notification :visible.sync="test"
-                     :footer="false"></yg-notification> -->
+    <yg-dialog :visible.sync="show">123123</yg-dialog>
     <router-link to="/slid">slid</router-link>
   </div>
 </template>
