@@ -89,7 +89,7 @@ export default {
         this.slide.on("scrollEnd", this.onScrollEnd);
 
         if (this.autoPlay) {
-          this.slide.on("beforeScrollStart", () => {
+          this.slide.on("scrollStart", () => {
             clearTimeout(this.timer);
           });
           this.slide.on("touchEnd", () => {

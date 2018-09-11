@@ -1,10 +1,8 @@
 <template>
   <div class="slid">
     <yg-carousel ref="carousel"
-                 :items="items"
-                 :autoPlay="false"
-                 :interval="60"
-                 :loop="false"
+                 :autoPlay="true"
+                 :interval="4000"
                  @click.native="clickHanadler">
       <yg-carousel-item class="carousel-item"
                         v-for="(item,index) in items"
@@ -45,9 +43,9 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      this.$refs.carousel.goToPage(2);
-    }, 1000);
+    // setTimeout(() => {
+    //   this.$refs.carousel.goToPage(2);
+    // }, 1000);
   }
 };
 </script>

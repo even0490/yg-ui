@@ -293,6 +293,11 @@ export default {
 .yg-scroll-content {
   position: relative;
   z-index: 1;
+  min-height: 100%;
+  display: flex;
+}
+.yg-scroll-content > div {
+  flex: 1;
 }
 
 .yg-scroll-pulldonwntop {
