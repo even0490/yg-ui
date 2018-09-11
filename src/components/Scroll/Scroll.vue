@@ -109,6 +109,10 @@ export default {
     },
     zoom: {
       default: false
+    },
+    preventDefault: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -183,6 +187,9 @@ export default {
         return;
       }
       if (this.$refs.listWrapper && (this.pullDownRefresh || this.pullUpLoad)) {
+        this.$refs.listWrapper.style.minHeight = `${this.getRect(
+          this.$refs.wrapper
+        ).height + 1}px`;
         this.pullDownHeight = this.getRect(this.$refs.pulldown).height;
         this.pullUpHeight = this.getRect(this.$refs.pullup).height;
       }
@@ -192,6 +199,7 @@ export default {
         scrollY: this.freeScroll || this.direction === DIRECTION_V,
         scrollX: this.freeScroll || this.direction === DIRECTION_H,
         scrollbar: this.scrollbar,
+        preventDefault: this.preventDefault,
         pullDownRefresh: this.pullDownRefresh && {
           threshold: this.pullDownHeight,
           stop: this.pullDownHeight
