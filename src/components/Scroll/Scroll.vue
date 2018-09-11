@@ -244,10 +244,16 @@ export default {
         if (this.pullDownRefresh) {
           this.beforePullDown = true;
           this.isPullingDown = false;
+          this.$refs.listWrapper.style.minHeight = `${this.getRect(
+            this.$refs.wrapper
+          ).height + 1}px`;
           this.scroll.finishPullDown();
         }
         if (this.pullUpLoad) {
           this.isPullUpLoad = false;
+          this.$refs.listWrapper.style.minHeight = `${this.getRect(
+            this.$refs.wrapper
+          ).height + 1}px`;
           this.scroll.finishPullUp();
         }
         this.refresh();

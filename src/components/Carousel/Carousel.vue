@@ -76,6 +76,7 @@ export default {
           scrollX: true,
           scrollY: false,
           momentum: false,
+          preventDefault: false,
           snap: {
             loop: this.loop,
             threshold: this.threshold,
