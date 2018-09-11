@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition name="yg-fade">
     <div v-show="showFlag"
          class="yg-loading">
       <div v-show="isShowMask && showFlag"

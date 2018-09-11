@@ -1,6 +1,7 @@
 <template>
   <div ref="wrapper"
-       class="yg-scroll">
+       class="yg-scroll"
+       :style="{ height:wrapperHeight+'px' }">
     <div class="yg-scroll-content">
       <div ref="listWrapper">
         <slot></slot>
@@ -113,6 +114,7 @@ export default {
   },
   data() {
     return {
+      wrapperHeight: 0,
       pullDownHeight: 0,
       pullUpHeight: 0,
       beforePullDown: true,
@@ -182,6 +184,7 @@ export default {
       if (!this.$refs.wrapper) {
         return;
       }
+      this.wrapperHeight = this.getRect(this.$refs.wrapper).height;
       if (this.$refs.listWrapper && (this.pullDownRefresh || this.pullUpLoad)) {
         this.pullDownHeight = this.getRect(this.$refs.pulldown).height;
         this.pullUpHeight = this.getRect(this.$refs.pullup).height;
