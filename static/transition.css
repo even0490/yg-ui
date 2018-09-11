@@ -1,11 +1,33 @@
-.yg-fade-enter-active,
-.yg-fade-leave-active {
-  opacity: 1;
-  transition: opacity linear 0.2s;
-}
 .yg-fade-enter,
 .yg-fade-leave-to {
-  opacity: 0;
+  transform-origin: center;
+}
+
+.yg-fade-enter-active {
+  animation: fadeIn 0.2s;
+}
+
+.yg-fade-leave-active {
+  animation: fadeOut 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 .yg-zoom-enter,
