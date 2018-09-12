@@ -60,6 +60,9 @@ export default {
     interval: {
       type: Number,
       default: 4000
+    },
+    activeIndex: {
+      type: Number
     }
   },
   methods: {
@@ -103,6 +106,7 @@ export default {
     onScrollEnd() {
       let pageIndex = this.slide.getCurrentPage().pageX;
       this.currentPageIndex = pageIndex;
+      this.$emit("update:activeIndex", pageIndex);
       if (this.autoPlay) {
         this.play();
       }
@@ -164,6 +168,7 @@ export default {
     let pageIndex = this.slide.getCurrentPage().pageX;
     this.slide.goToPage(pageIndex, 0, 0);
     this.currentPageIndex = pageIndex;
+    this.$emit("update:activeIndex", pageIndex);
     if (this.autoPlay) {
       this.play();
     }
