@@ -1,13 +1,10 @@
 <template>
-  <div class="yg-toast">
-    <div v-show="isShowMask && showFlag"></div>
-    <transition name="yg-fade">
-      <div class="yg-toast-box"
-           v-show="showFlag">
-        <p class="yg-toast__content">{{text}}</p>
-      </div>
-    </transition>
-  </div>
+  <transition name="yg-fade">
+    <div class="yg-toast"
+         v-show="showFlag">
+      <p class="yg-toast__content">{{text}}</p>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -18,24 +15,18 @@ export default {
       showFlag: false,
       timeout: null,
       time: 2000,
-      isShowMask: false,
       text: "",
       defaultOption: {
         time: 2000,
-        isShowMask: false,
         text: ""
       }
     };
   },
   methods: {
-    show({
-      text = this.defaultOption.text,
-      isShowMask = this.defaultOption.isShowMask,
-      time = this.defaultOption.time
-    }) {
+    show({ text = this.defaultOption.text, time = this.defaultOption.time }) {
       this.text = text;
       this.time = time;
-      this.isShowMask = isShowMask;
+
       this.showFlag = true;
       clearTimeout(this.timeout);
       return new Promise(resolve => {
@@ -50,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.yg-toast-box {
+.yg-toast {
   position: fixed;
   top: 188px;
   left: 0;

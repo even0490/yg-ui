@@ -2,8 +2,6 @@
   <transition name="yg-fade">
     <div v-show="showFlag"
          class="yg-loading">
-      <div v-show="isShowMask && showFlag"
-           class="yg-loading-mask"></div>
       <div class="yg-loading-box">
         <div class="yg-loading-icon">
           <img class="yg-loading-astronaut"
@@ -23,22 +21,16 @@ export default {
   name: "yg-loading",
   data() {
     return {
-      isShowMask: true,
       showFlag: false,
       text: "正在加载",
       defaultOption: {
-        isShowMask: true,
         text: "正在加载"
       }
     };
   },
   methods: {
-    show({
-      isShowMask = this.defaultOption.isShowMask,
-      text = this.defaultOption.text
-    }) {
+    show({ text = this.defaultOption.text }) {
       this.text = text;
-      this.isShowMask = isShowMask;
       this.showFlag = true;
     },
     hide() {
@@ -49,12 +41,13 @@ export default {
 </script>
 
 <style scoped>
-.yg-loading-mask {
+.yg-loading {
   position: fixed;
+  z-index: 9999;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
 }
 .yg-loading-box {
   position: fixed;
