@@ -1,8 +1,8 @@
 <template>
   <div class="scroll">
     <yg-scroll ref="scroll"
-               :pullDownRefresh="true"
-               :pullUpLoad="true"
+               :pullDownRefresh="pullDownRefresh"
+               :pullUpLoad="pullUpLoad"
                :listenScroll="listenScroll"
                :probeType="probeType"
                :beforePullDownTxt="beforePullDownTxt"
@@ -332,6 +332,9 @@ export default {
           this.$refs.scroll.forceUpdate();
         } else {
           // 如果没有新数据
+          console.log("no data");
+
+          this.pullUpLoad = false;
           this.$refs.scroll.forceUpdate();
         }
       }, 1500);

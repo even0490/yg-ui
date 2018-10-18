@@ -278,20 +278,42 @@ export default {
       this.scroll.destroy();
     },
     _initPullDownRefresh() {
-      this.scroll.on("scroll", pos => {
-        this.scrollY = pos.y;
-      });
-      this.scroll.on("pullingDown", () => {
+      let onPullingDown = () => {
         this.beforePullDown = false;
         this.isPullingDown = true;
         this.$emit("pullingDown");
-      });
+      };
+      let onScroll = pos => {
+        this.scrollY = pos.y;
+      };
+      this.scroll.off("scroll", onScroll);
+      this.scroll.on("scroll", onScroll);
+      this.scroll.off("pullingDown", onPullingDown);
+      this.scroll.on("pullingDown", onPullingDown);
     },
     _initPullUpLoad() {
-      this.scroll.on("pullingUp", () => {
+      let onPullingUp = () => {
         this.isPullUpLoad = true;
         this.$emit("pullingUp");
-      });
+      };
+      this.scroll.off("pullingUp", onPullingUp);
+      this.scroll.on("pullingUp", onPullingUp);
+    }
+  },
+  watch: {
+    pullDownRefresh(val) {
+      if (val) {
+        this.scroll.openPullDown();
+      } else {
+        this.scroll.closePullDown();
+      }
+    },
+    pullUpLoad(val) {
+      if (val) {
+        this.scroll.openPullUp();
+      } else {
+        this.scroll.closePullUp();
+      }
     }
   }
 };
