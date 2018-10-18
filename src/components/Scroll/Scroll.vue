@@ -124,7 +124,8 @@ export default {
       isPullUpLoad: false,
       pullDownStyle: "",
       scrollY: -1,
-      circle
+      circle,
+      scroll: undefined
     };
   },
   //监听滚动
