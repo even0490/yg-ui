@@ -31,7 +31,7 @@ export default {
       },
       beforePullDownTxt: `下拉刷新`, //下拉提示文字
       beforePullDownOverTxt: `释放刷新...`, //下拉临界点提示
-      pullUpLoad: true, //这个配置用于做上拉加载功能，默认为 false。当设置为 true 或者是一个 Object 的时候，可以开启上拉加载，
+      pullUpLoad: false, //这个配置用于做上拉加载功能，默认为 false。当设置为 true 或者是一个 Object 的时候，可以开启上拉加载，
       pullUpLoadObj: {
         threshold: 90, //离底部距离阈值（threshold）来决定开始加载的时机
         txt: { more: "加载更多", noMorn: "没有更多数据了" } //提示文字
@@ -307,6 +307,7 @@ export default {
     onPullingDown() {
       // 模拟更新数据
       console.log("pulling down and load data");
+      this.pullUpLoad = true;
       setTimeout(() => {
         if (this._isDestroyed) {
           return;
