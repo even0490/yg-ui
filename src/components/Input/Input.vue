@@ -123,7 +123,7 @@ export default {
     }
   },
   mounted() {
-    this.inputRegister(this, this.prop);
+    this.inputRegister && this.inputRegister(this, this.prop);
   }
 };
 </script>

@@ -9,7 +9,7 @@ export default {
   name: "yg-carousel-item",
   inject: ["registerItem"],
   mounted() {
-    this.registerItem(this);
+    this.registerItem && this.registerItem(this);
   }
 };
 </script>
