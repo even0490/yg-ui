@@ -7,7 +7,11 @@
 <script>
 export default {
   name: "yg-carousel-item",
-  inject: ["registerItem"],
+  inject: {
+    registerItem: {
+      default: () => {}
+    }
+  },
   mounted() {
     this.registerItem && this.registerItem(this);
   }

@@ -49,7 +49,11 @@ export default {
       openeye
     };
   },
-  inject: ["inputRegister"],
+  inject: {
+    inputRegister: {
+      default: () => {}
+    }
+  },
   props: {
     id: String,
     prop: {
