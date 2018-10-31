@@ -43,7 +43,7 @@ export default {
 <style scoped>
 .yg-loading {
   position: fixed;
-  z-index: 9999;
+  z-index: 10000;
   top: 0;
   left: 0;
   right: 0;
@@ -65,7 +65,7 @@ export default {
   transform: translate3d(-50%, -50%, 0);
   text-align: center;
   font-size: 0;
-  z-index: 9999;
+  z-index: 10000;
   color: #fff;
   border-radius: 1.3333vw;
   background: rgba(0, 0, 0, 0.5);
