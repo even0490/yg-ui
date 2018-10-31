@@ -3,7 +3,7 @@
     <slot name="iconLeft"></slot>
     <div class="input-content">
       <input :id="id"
-             :rule="rule"
+             :filter="filter"
              :type="types"
              :name="name"
              :placeholder="placeholder"
@@ -70,8 +70,8 @@ export default {
       type: Boolean,
       default: false
     },
-    rule: {
-      type: [String, Object]
+    filter: {
+      type: Function
     },
     value: [String, Number],
     placeholder: String,
@@ -100,6 +100,10 @@ export default {
         return this.value;
       },
       set: function(v) {
+        if (this.filter) {
+          v = this.filter(v);
+          this.$refs.input.value = v;
+        }
         this.$emit("input", v);
       }
     }

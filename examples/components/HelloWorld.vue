@@ -201,14 +201,7 @@ export default {
       // this.$toast(Math.random() + "");
     },
     checkForm() {
-      this.$refs.formDate
-        .checkForm()
-        .then(data => {
-          console.log("success");
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$alert("123");
     },
 
     close() {
