@@ -113,6 +113,13 @@ export default {
     preventDefault: {
       type: Boolean,
       default: true
+    },
+    momentum: {
+      type: Boolean,
+      default: true
+    },
+    wheel: {
+      type: Object
     }
   },
   data() {
@@ -196,6 +203,8 @@ export default {
       }
       let options = {
         probeType: this.probeType,
+        momentum: this.momentum,
+        wheel: this.wheel,
         click: this.click,
         scrollY: this.freeScroll || this.direction === DIRECTION_V,
         scrollX: this.freeScroll || this.direction === DIRECTION_H,
