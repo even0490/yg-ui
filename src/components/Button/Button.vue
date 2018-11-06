@@ -88,7 +88,7 @@ export default {
   color: #fff;
   font-size: 16px;
   height: 50px;
-  width: 100%;
+  width: -webkit-fill-available;
   text-align: center;
   border-radius: 4px;
   outline: none;
