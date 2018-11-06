@@ -10,23 +10,23 @@ Button.install = function(Vue, options) {
 
 function setGlobalStyle(option) {
   let styleTmp = `
-  .yg-button-default{
+  button.yg-button.yg-button-default{
     background:${option.defaultBackground};
-    color;${option.defaultText};
+    color:${option.defaultText};
   }
-  .yg-button-default:active{
+  button.yg-button.yg-button-default:active{
     background:${option.defaultActiveBg}
   }
-  .yg-button-cancel{
+  button.yg-button.yg-button-cancel{
     background:${option.cancelBackground};
     color:${option.cancelText};
   }
-  .yg-button-cancel:active{
+  button.yg-button.yg-button-cancel:active{
     background:${option.cancelActiveBg}
   }
-  .yg-button-disabled{
+  button.yg-button.yg-button-disabled{
     background:${option.disabledBackground};
-    color;${option.disabledText};
+    color:${option.disabledText};
   }`;
   const styleDom = document.createElement("style");
   styleDom.type = "text/css";

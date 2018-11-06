@@ -103,7 +103,7 @@ export default {
 .yg-button.yg-button-medium {
   height: 44px;
 }
-.yg-button .yg-button-cancel {
+.yg-button.yg-button-cancel {
   @include border(1px, #e8e8e8, solid, 4px);
 }
 </style>
