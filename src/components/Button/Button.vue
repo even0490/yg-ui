@@ -1,13 +1,11 @@
 <template>
-  <div class="yg-button"
-       :class="className">
-    <button @click="handleClick"
-            type="button"
-            :class="btnClass"
-            :disabled="disabled">
-      <slot>submit</slot>
-    </button>
-  </div>
+  <button class="yg-button"
+          @click="handleClick"
+          type="button"
+          :class="className"
+          :disabled="disabled">
+    <slot>submit</slot>
+  </button>
 </template>
 <script>
 import config from "../../config.js";
@@ -32,21 +30,22 @@ export default {
       return "yg-button-" + (this.disabled ? "disabled" : this.type);
     },
     className() {
-      let className = "";
+      let sizeClass = "";
+      let typeClass = "yg-button-" + (this.disabled ? "disabled" : this.type);
       switch (this.size) {
         case "mini":
-          className = "yg-button-mini";
+          sizeClass = "yg-button-mini";
           break;
         case "small":
-          className = "yg-button-small";
+          sizeClass = "yg-button-small";
           break;
         case "medium":
-          className = "yg-button-medium";
+          sizeClass = "yg-button-medium";
           break;
         default:
           break;
       }
-      return className;
+      return `${sizeClass} ${typeClass}`;
     }
   },
   props: {
@@ -89,7 +88,10 @@ export default {
   color: #fff;
   font-size: 16px;
   height: 50px;
+  width: 100%;
   text-align: center;
+  border-radius: 4px;
+  outline: none;
 }
 .yg-button.yg-button-mini {
   height: 30px;
@@ -100,15 +102,6 @@ export default {
 }
 .yg-button.yg-button-medium {
   height: 44px;
-}
-.yg-button button {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  border: none;
-  border-radius: 4px;
-  outline: none;
 }
 .yg-button .yg-button-cancel {
   @include border(1px, #e8e8e8, solid, 4px);
