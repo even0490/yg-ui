@@ -47,7 +47,7 @@ export default {
   left: 0;
   width: 100%;
   font-size: 0;
-  z-index: 9999;
+  z-index: 10000;
   text-align: center;
 }
 .yg-toast__content {
