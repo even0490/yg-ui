@@ -178,6 +178,8 @@ export default {
 .input-content {
   margin-left: 10px;
   flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .yg-input input {
