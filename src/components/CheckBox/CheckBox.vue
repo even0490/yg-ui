@@ -17,6 +17,7 @@
         </transition>
       </span>
       <input type="checkbox"
+             hidden
              :value="label"
              :checked="checked"
              :disabled="groupDisabled||disabled"
