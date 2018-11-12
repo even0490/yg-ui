@@ -201,7 +201,7 @@ export default {
       // this.$toast(Math.random() + "");
     },
     checkForm() {
-      this.$alert("123");
+      this.$loading.show("123");
     },
 
     close() {

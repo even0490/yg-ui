@@ -1,10 +1,8 @@
 <template>
-  <!--<div class="select" @click="showPicker(0)" ref="select0">{{ selectedText[0] }}</div>-->
   <transition name="picker-fade">
     <div class="picker"
          v-show="state===1"
-         @touchmove.prevent
-         @click="cancel">
+         @touchmove.prevent>
       <transition name="picker-move">
         <div class="picker-panel"
              @click.stop>
@@ -276,7 +274,7 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 100;
+  z-index: 9999;
   width: 100%;
   height: 100%;
   overflow: hidden;
