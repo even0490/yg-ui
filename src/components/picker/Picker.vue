@@ -16,10 +16,8 @@
             <h1 class="picker-title">{{title}}</h1>
           </div>
           <div class="picker-content">
-            <div class="mask-top border-bottom-1px"
-                 :style="pickerData.length===1?'50%':'100%'"></div>
-            <div class="mask-bottom border-top-1px"
-                 :style="pickerData.length===1?'50%':'100%'"></div>
+            <div class="mask-top border-bottom-1px"></div>
+            <div class="mask-bottom border-top-1px"></div>
             <div class="wheel-wrapper"
                  ref="wheelWrapper">
               <div class="wheel"
@@ -358,8 +356,9 @@ export default {
   top: 0;
   right: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
+  /* padding: 0 43px; */
   background: linear-gradient(
     to top,
     rgba(255, 255, 255, 0.4),
@@ -370,7 +369,7 @@ export default {
   position: absolute;
   right: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   bottom: 1px;
   background: linear-gradient(
