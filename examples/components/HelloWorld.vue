@@ -26,6 +26,11 @@
                 placeholder="这是密码">
       </yg-input>
     </yg-form>
+    <yg-checkbox class="isAgree">
+      <p class="agreeLabel">
+        本人确认上述税收居民身份信息的真实、准确和完整，且当信息发生变更时，将在30日内通知贵机构，否则，本人承担由此造成的不利后果。
+      </p>
+    </yg-checkbox>
     <yg-button @click="checkForm"
                bgColor="#f5825e"
                txtWeight="bold"

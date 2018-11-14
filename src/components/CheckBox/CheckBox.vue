@@ -27,7 +27,6 @@
     <span class="yg-checkbox-label">
       <slot></slot>
     </span>
-
   </label>
 </template>
 
@@ -97,16 +96,16 @@ export default {
 @import "../../../static/border.scss";
 .yg-checkbox {
   display: block;
-  white-space: nowrap;
+  // white-space: nowrap;
   user-select: none;
   position: relative;
-  line-height: 1;
+  // line-height: 1;
   font-size: 0;
   cursor: pointer;
 }
 .yg-checkbox-box {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: -webkit-baseline-middle;
 }
 .yg-checkbox-innerbox {
   position: relative;
@@ -132,6 +131,5 @@ export default {
 .yg-checkbox-label {
   display: inline-block;
   font-size: 15px;
-  vertical-align: middle;
 }
 </style>
