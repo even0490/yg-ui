@@ -96,12 +96,12 @@ export default {
 @import "../../../static/border.scss";
 .yg-checkbox {
   display: block;
-  // white-space: nowrap;
   user-select: none;
   position: relative;
-  // line-height: 1;
+  line-height: 15px;
   font-size: 0;
   cursor: pointer;
+  display: flex;
 }
 .yg-checkbox-box {
   display: inline-block;
