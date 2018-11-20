@@ -2,6 +2,7 @@
   <label class="yg-checkbox">
     <span class="yg-checkbox-box">
       <span class="yg-checkbox-innerbox"
+            :class="type==='square'?'square':'circle'"
             :style="boxStyle">
         <transition name="yg-fade">
           <svg t="1534386909319"
@@ -18,14 +19,13 @@
       </span>
       <input type="checkbox"
              hidden
-             :value="label"
              :checked="checked"
              :disabled="groupDisabled||disabled"
              :name="name"
              @change="change" />
     </span>
     <span class="yg-checkbox-label">
-      <slot></slot>
+      <slot>{{label}}</slot>
     </span>
   </label>
 </template>
@@ -55,8 +55,16 @@ export default {
     }
   },
   props: {
-    label: {},
-    value: {},
+    label: {
+      type: String
+    },
+    value: {
+      type: Boolean
+    },
+    type: {
+      type: String,
+      default: "square"
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -100,17 +108,14 @@ export default {
   position: relative;
   line-height: 15px;
   font-size: 0;
-  cursor: pointer;
   display: flex;
 }
 .yg-checkbox-box {
-  display: inline-block;
-  vertical-align: -webkit-baseline-middle;
+  display: block;
 }
 .yg-checkbox-innerbox {
   position: relative;
-  display: inline-block;
-  border-radius: 2px;
+  display: block;
   box-sizing: border-box;
   width: 15px;
   height: 15px;
@@ -118,10 +123,15 @@ export default {
   z-index: 1;
   text-align: center;
   transition: all 0.2s;
-  @include border(1px, inherit, solid, 2px);
+  &.circle {
+    @include border(1px, inherit, solid, 100%);
+  }
+  &.square {
+    @include border(1px, inherit, solid, 2px);
+  }
 }
 .yg-checkbox-check {
-  display: inline-block;
+  display: block;
   position: absolute;
   top: 2px;
   left: 2px;
@@ -129,7 +139,7 @@ export default {
   height: 11px;
 }
 .yg-checkbox-label {
-  display: inline-block;
+  display: block;
   font-size: 15px;
 }
 </style>
