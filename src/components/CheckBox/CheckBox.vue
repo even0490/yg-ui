@@ -6,7 +6,7 @@
             :style="boxStyle">
         <transition name="yg-fade">
           <svg t="1534386909319"
-               v-show="checked"
+               v-show="value"
                class="yg-checkbox-check"
                viewBox="0 0 1024 1024"
                width="200"
@@ -19,7 +19,7 @@
       </span>
       <input type="checkbox"
              hidden
-             :checked="checked"
+             :checked="value"
              :disabled="groupDisabled||disabled"
              :name="name"
              @change="change" />
@@ -37,7 +37,6 @@ export default {
   name: "yg-checkbox",
   data() {
     return {
-      checked: this.value,
       groupDisabled: false
     };
   },
@@ -45,7 +44,7 @@ export default {
     boxStyle() {
       return {
         "border-color": this.borderColor,
-        "background-color": this.checked ? this.checkBg : this.unCheckBg
+        "background-color": this.value ? this.checkBg : this.unCheckBg
       };
     }
   },
@@ -89,7 +88,6 @@ export default {
   },
   methods: {
     change(e) {
-      this.checked = e.target.checked;
       this.$emit("input", e.target.checked);
       this.$emit("change", e.target.checked);
     }
