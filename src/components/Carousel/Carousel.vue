@@ -86,7 +86,7 @@ export default {
             speed: this.speed
           },
           bounce: false,
-          stopPropagation: true,
+          stopPropagation: false,
           click: this.click
         });
 
