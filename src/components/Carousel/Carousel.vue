@@ -80,6 +80,7 @@ export default {
           scrollY: false,
           momentum: false,
           preventDefault: false,
+          eventPassthrough: "vertical",
           snap: {
             loop: this.loop,
             threshold: this.threshold,
