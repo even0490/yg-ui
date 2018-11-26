@@ -132,6 +132,11 @@ export default {
   },
   mounted() {
     this.inputRegister && this.inputRegister(this, this.prop);
+  },
+  watch: {
+    type(val) {
+      this.types = val;
+    }
   }
 };
 </script>
