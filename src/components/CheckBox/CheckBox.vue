@@ -2,20 +2,23 @@
   <label class="yg-checkbox">
     <span class="yg-checkbox-box">
       <span class="yg-checkbox-innerbox"
-            :class="type==='square'?'square':'circle'"
             :style="boxStyle">
-        <transition name="yg-fade">
-          <svg t="1534386909319"
-               v-show="value"
-               class="yg-checkbox-check"
-               viewBox="0 0 1024 1024"
-               width="200"
-               height="200">
-            <path d="M384 690.005333l452.010667-452.010667 59.989333 59.989333-512 512-237.994667-237.994667 59.989333-59.989333z"
-                  p-id="2132"
-                  :fill="checkColor"></path>
-          </svg>
-        </transition>
+        <img v-show="value"
+             v-if="type==='square'"
+             key="checked"
+             src="../../assets/checked.png">
+        <img v-show="!value"
+             v-if="type==='square'"
+             key="unchecked"
+             src="../../assets/unchecked.png">
+        <img v-show="value"
+             v-if="type==='circle'"
+             key="cirChecked"
+             src="../../assets/cirChecked.png">
+        <img v-show="!value"
+             v-if="type==='circle'"
+             key="cirUnchecked"
+             src="../../assets/cirUnchecked.png">
       </span>
       <input type="checkbox"
              hidden
@@ -46,6 +49,10 @@ export default {
         "border-color": this.borderColor,
         "background-color": this.value ? this.checkBg : this.unCheckBg
       };
+    },
+    labelTextFix() {
+      let userAgent = window.navigator.userAgent;
+      return "";
     }
   },
   inject: {
@@ -121,11 +128,10 @@ export default {
   z-index: 1;
   text-align: center;
   transition: all 0.2s;
-  &.circle {
-    @include border(1px, inherit, solid, 100%);
-  }
-  &.square {
-    @include border(1px, inherit, solid, 2px);
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 }
 .yg-checkbox-check {
